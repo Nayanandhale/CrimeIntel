@@ -1,0 +1,13 @@
+scenario,input,expected
+1 — Document to Graph,Upload DOC001 / its narrative.,"Extract person names, alias, phone, vehicle, location and organization; resolve aliases; create evidence-backed relationships; show source document and confidence."
+2 — Entity Resolution,Search observed value 'Bunty P.',Resolve to canonical P005 and show alternate names plus confidence; do not create a second person automatically.
+3 — Influencer,Open network centered on P005.,Show degree/betweenness-style influence metrics and explain which relationships/evidence contribute.
+4 — Community Detection,Run community analysis on all verified person relationships.,Reveal multiple clusters plus bridge persons connecting clusters.
+5 — Cross-Case Link,Open C005 and inspect related cases.,"Show C021 as a similarity candidate with explicit factors: MO, spatial/temporal similarity and semantic score; status AI-suggested."
+6 — Explain a Connection,Click any AI-suggested edge.,"Display relationship type, evidence source, extracted fact, confidence, first/last seen and validation status."
+7 — Human Validation,Approve/reject an AI-suggested relationship.,"Create a validation record, update edge state and append an audit event."
+8 — Case Aging,Open the case dashboard and filter high/critical pending cases.,Show aging/pending-update alerts and the last meaningful update date.
+9 — Timeline,Open C001 timeline.,Render 4–6 events in chronological order and allow filtering by event type/location.
+10 — AI Assistant,Ask: 'Why is C005 connected to C021?',RAG retrieves the case-link factors and source evidence; Llama produces a grounded explanation with citations/source chips.
+11 — Chargesheet Draft,Open C001 and choose Draft Report/Chargesheet.,Generate a clearly labeled draft from verified facts; show source references and require investigator review before export.
+12 — Security,Login as analyst vs investigator vs admin.,Role-based visibility/actions differ; sensitive actions create audit records.

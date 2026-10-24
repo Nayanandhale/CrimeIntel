@@ -1,0 +1,28 @@
+alert_id,case_id,alert_type,severity,message,status
+AL0001,C001,missing_update,medium,New cross-case relationship requires investigator review.,open
+AL0002,C002,aging_case,medium,Case has not received a meaningful update within configured threshold.,open
+AL0003,C003,new_cross_case_link,critical,New cross-case relationship requires investigator review.,open
+AL0004,C004,pending_validation,high,New cross-case relationship requires investigator review.,open
+AL0005,C005,missing_update,high,Important evidence field is missing or unverified.,open
+AL0006,C006,aging_case,high,Case has not received a meaningful update within configured threshold.,open
+AL0007,C007,new_cross_case_link,medium,AI-suggested relationship is awaiting validation.,open
+AL0008,C008,missing_update,medium,New cross-case relationship requires investigator review.,open
+AL0009,C009,aging_case,high,New cross-case relationship requires investigator review.,open
+AL0010,C010,aging_case,critical,Important evidence field is missing or unverified.,open
+AL0011,C011,aging_case,high,Case has not received a meaningful update within configured threshold.,open
+AL0012,C012,new_cross_case_link,medium,Case has not received a meaningful update within configured threshold.,open
+AL0013,C014,new_cross_case_link,medium,Important evidence field is missing or unverified.,open
+AL0014,C015,pending_validation,medium,AI-suggested relationship is awaiting validation.,open
+AL0015,C016,aging_case,medium,New cross-case relationship requires investigator review.,open
+AL0016,C018,missing_update,critical,AI-suggested relationship is awaiting validation.,open
+AL0017,C019,new_cross_case_link,critical,Important evidence field is missing or unverified.,open
+AL0018,C020,pending_validation,high,Important evidence field is missing or unverified.,open
+AL0019,C021,pending_validation,medium,Important evidence field is missing or unverified.,open
+AL0020,C022,missing_update,high,New cross-case relationship requires investigator review.,open
+AL0021,C023,aging_case,high,New cross-case relationship requires investigator review.,open
+AL0022,C024,new_cross_case_link,critical,New cross-case relationship requires investigator review.,open
+AL0023,C025,new_cross_case_link,high,AI-suggested relationship is awaiting validation.,open
+AL0024,C027,new_cross_case_link,medium,New cross-case relationship requires investigator review.,open
+AL0025,C028,missing_update,critical,AI-suggested relationship is awaiting validation.,open
+AL0026,C029,new_cross_case_link,critical,Important evidence field is missing or unverified.,open
+AL0027,C030,new_cross_case_link,medium,Case has not received a meaningful update within configured threshold.,open

@@ -1,0 +1,7 @@
+anomaly_id,case_id,anomaly_type,score,explanation,status
+AN001,C001,burst_activity,0.87,Synthetic anomaly signal for prototype demonstration; requires analyst validation.,needs_review
+AN006,C006,rapid_entity_reuse,0.81,Synthetic anomaly signal for prototype demonstration; requires analyst validation.,needs_review
+AN011,C011,burst_activity,0.86,Synthetic anomaly signal for prototype demonstration; requires analyst validation.,needs_review
+AN016,C016,burst_activity,0.73,Synthetic anomaly signal for prototype demonstration; requires analyst validation.,needs_review
+AN021,C021,rapid_entity_reuse,0.8,Synthetic anomaly signal for prototype demonstration; requires analyst validation.,needs_review
+AN026,C026,rapid_entity_reuse,0.71,Synthetic anomaly signal for prototype demonstration; requires analyst validation.,needs_review

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="235" height="58" viewBox="25 20 235 58" role="img" aria-labelledby="title desc">
+  <title id="title">CrimeIntel logo</title>
+  <desc id="desc">Minimal navy and teal network mark with CrimeIntel wordmark.</desc>
+  <g transform="translate(18,17)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 22 L43 12 L47 42 L20 52 L18 22 M18 22 L47 42 M43 12 L20 52" stroke="#0EA5B7" stroke-width="3.5"/>
+    <circle cx="18" cy="22" r="6.5" fill="#FFFFFF" stroke="#153746" stroke-width="3"/>
+    <circle cx="43" cy="12" r="6.5" fill="#FFFFFF" stroke="#0EA5B7" stroke-width="3"/>
+    <circle cx="47" cy="42" r="6.5" fill="#FFFFFF" stroke="#153746" stroke-width="3"/>
+    <circle cx="20" cy="52" r="6.5" fill="#FFFFFF" stroke="#0EA5B7" stroke-width="3"/>
+    <circle cx="32" cy="32" r="4" fill="#0EA5B7" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
+  <text x="88" y="58" font-family="'Gadugi', 'Segoe UI', sans-serif" font-size="34" font-weight="700" letter-spacing="-0.5"><tspan fill="#153746">Crime</tspan><tspan fill="#0B8797">Intel</tspan></text>
+</svg>

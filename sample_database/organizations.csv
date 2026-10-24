@@ -1,0 +1,11 @@
+org_id,name,type,city
+O001,Shree Logistics,transport,Pune
+O002,Metro Auto Works,vehicle_service,Pimpri-Chinchwad
+O003,Western Scrap Traders,scrap,Pune
+O004,BlueRoute Couriers,courier,Nashik
+O005,Apex Security Services,security,Mumbai
+O006,Kaveri Hardware,retail,Pune
+O007,Sahyadri Exports,trading,Navi Mumbai
+O008,Omkar Finance,finance,Pune
+O009,Rudra Fabrication,fabrication,Nashik
+O010,Vertex Warehousing,warehouse,Thane

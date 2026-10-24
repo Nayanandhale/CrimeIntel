@@ -1,0 +1,31 @@
+location_id,name,city,state,lat,lon,type
+L001,Pune Railway Station,Pune,Maharashtra,18.5284,73.8740,transport
+L002,Camp Market,Pune,Maharashtra,18.5145,73.8790,market
+L003,Bhosari MIDC,Pimpri-Chinchwad,Maharashtra,18.6298,73.8481,industrial
+L004,Akurdi,Pimpri-Chinchwad,Maharashtra,18.6496,73.7706,residential
+L005,Kothrud,Pune,Maharashtra,18.5074,73.8077,residential
+L006,Hadapsar,Pune,Maharashtra,18.5089,73.9260,residential
+L007,Wakad,Pimpri-Chinchwad,Maharashtra,18.5976,73.7898,commercial
+L008,Nashik Road Station,Nashik,Maharashtra,19.9725,73.8080,transport
+L009,Nashik MIDC,Nashik,Maharashtra,19.9975,73.7810,industrial
+L010,Aurangabad Central,Aurangabad,Maharashtra,19.8762,75.3433,commercial
+L011,Jalgaon Market,Jalgaon,Maharashtra,21.0077,75.5626,market
+L012,Kolhapur Highway Toll,Kolhapur,Maharashtra,16.7050,74.2433,transport
+L013,Satara Bypass,Satara,Maharashtra,17.6805,74.0183,transport
+L014,Mumbai Dock Road,Mumbai,Maharashtra,18.9560,72.8450,industrial
+L015,Vashi Market,Navi Mumbai,Maharashtra,19.0760,72.9986,market
+L016,Thane Warehouse Belt,Thane,Maharashtra,19.2183,72.9781,industrial
+L017,Panvel Junction,Navi Mumbai,Maharashtra,18.9894,73.1175,transport
+L018,Lonavala Bypass,Lonavala,Maharashtra,18.7546,73.4062,transport
+L019,Karad Industrial Estate,Karad,Maharashtra,17.2890,74.1810,industrial
+L020,Solapur Highway,Solapur,Maharashtra,17.6599,75.9064,transport
+L021,Pimpri Market,Pimpri-Chinchwad,Maharashtra,18.6298,73.7997,market
+L022,Yerwada,Pune,Maharashtra,18.5481,73.8784,residential
+L023,Kharadi,Pune,Maharashtra,18.5511,73.9388,commercial
+L024,Sinhagad Road,Pune,Maharashtra,18.4629,73.8331,residential
+L025,Talegaon,Pune,Maharashtra,18.7350,73.6750,industrial
+L026,Dapodi,Pimpri-Chinchwad,Maharashtra,18.5791,73.8320,residential
+L027,Swargate,Pune,Maharashtra,18.5018,73.8636,transport
+L028,Nanded Phata,Pune,Maharashtra,18.4542,73.8267,commercial
+L029,Navi Peth,Pune,Maharashtra,18.5130,73.8435,residential
+L030,Chinchwad Station,Pimpri-Chinchwad,Maharashtra,18.6279,73.7790,transport

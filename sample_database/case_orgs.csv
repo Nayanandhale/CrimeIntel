@@ -1,0 +1,16 @@
+case_id,org_id,relation,source_document_id
+C002,O007,front,DOC010
+C004,O003,front,DOC012
+C006,O009,mentioned,DOC014
+C008,O005,mentioned,DOC016
+C010,O001,supplier,DOC018
+C012,O007,supplier,DOC020
+C014,O003,employer,DOC022
+C016,O009,employer,DOC024
+C018,O005,mentioned,DOC026
+C020,O001,mentioned,DOC028
+C022,O007,employer,DOC030
+C024,O003,employer,DOC032
+C026,O009,supplier,DOC034
+C028,O005,supplier,DOC036
+C030,O001,front,DOC038

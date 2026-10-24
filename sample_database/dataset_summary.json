@@ -1,0 +1,17 @@
+{
+  "synthetic": true,
+  "persons": 50,
+  "cases": 30,
+  "documents": 90,
+  "locations": 30,
+  "vehicles": 30,
+  "phones": 40,
+  "organizations": 10,
+  "case_person_links": 146,
+  "relationships": 154,
+  "case_events": 142,
+  "case_links": 15,
+  "validations": 120,
+  "alerts": 27,
+  "anomalies": 6
+}

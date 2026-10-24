@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrimeIntel — AI Criminal Network Analysis Platform</title>
+  <meta name="description" content="Evidence-Backed Criminal Network Analysis & Cross-Case Intelligence System - SIH 2026 PS 26189">
+  
+  <!-- Vis Network, Chart.js & Leaflet Map -->
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- Google Fonts: Inter & JetBrains Mono as fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Main Design System CSS (Gadugi typography & clean civic layout) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       DEDICATED SECURE LOGIN SCREEN (INITIAL VIEW)
+       ============================================================ -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="login-header">
+        <img src="crimeintel-logo.svg" alt="CrimeIntel Logo" class="login-emblem">
+        <div style="font-size: 19px; font-weight: 700; color: var(--ci-navy);">Portal Sign In</div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" onsubmit="handleLoginSubmit(event); return false;" style="display: flex; flex-direction: column; gap: 14px;">
+        <div id="loginErrorAlert" class="badge badge-danger hidden" style="padding: 8px 12px; font-size: 12px; white-space: normal;">
+          Invalid credentials. Please verify your user ID and password.
+        </div>
+
+        <div class="login-field">
+          <label for="loginUsername">User ID / Username</label>
+          <input id="loginUsername" type="text" class="form-input" placeholder="e.g. investigator, admin" required value="investigator" onkeydown="if(event.key==='Enter'){handleLoginSubmit(event);}">
+        </div>
+
+        <div class="login-field">
+          <label for="loginPassword">Password</label>
+          <div class="relative flex items-center">
+            <input id="loginPassword" type="password" class="form-input w-full" placeholder="Enter password" required value="invest123" style="padding-right: 40px;" onkeydown="if(event.key==='Enter'){handleLoginSubmit(event);}">
+            <button type="button" onclick="togglePasswordVisibility()" class="btn btn-secondary btn-sm" style="position: absolute; right: 4px; padding: 4px 8px; border: none; background: transparent;" title="Toggle Password Visibility">
+              <span id="pwToggleIcon">👁️</span>
+            </button>
+          </div>
+        </div>
+
+        <button id="loginSubmitBtn" type="button" onclick="handleLoginSubmit(event)" class="btn btn-primary w-full" style="padding: 10px; font-size: 14px; margin-top: 4px;">
+          <span>Sign In to Workspace</span>
+        </button>
+      </form>
+
+      <!-- Quick Evaluator Demo Fill Buttons (Administrator & Investigator only) -->
+      <div style="border-top: 1px solid var(--ci-border); padding-top: 14px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 11.5px; font-weight: 700; color: var(--ci-text-muted); text-transform: uppercase;">
+          Quick Role Sign-In
+        </div>
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 10px;">
+          <button type="button" onclick="fillDemoLogin('admin', 'admin123')" class="demo-account-chip">
+            <strong style="color: var(--ci-navy); font-size: 13px;">Administrator</strong><br>
+            <span style="color: var(--ci-text-muted); font-size: 11px;">HQ Oversight & Management</span>
+          </button>
+          <button type="button" onclick="fillDemoLogin('investigator', 'invest123')" class="demo-account-chip">
+            <strong style="color: var(--ci-teal-dark); font-size: 13px;">Investigator</strong><br>
+            <span style="color: var(--ci-text-muted); font-size: 11px;">Pune/Satara Field Division</span>
+          </button>
+        </div>
+      </div>
+
+      <div style="font-size: 11px; color: var(--ci-text-muted); text-align: center;">
+        🔒 Authorized Access Only • Passwords hashed via SHA-256
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       APPLICATION WORKSPACE (SHOWN AFTER AUTHENTICATION)
+       ============================================================ -->
+  <div id="appWorkspace" class="hidden flex-col min-h-screen">
+
+    <!-- TOP CIVIC HEADER BAR -->
+    <header class="app-topbar">
+      <!-- Brand & Identity -->
+      <div class="topbar-brand">
+        <img src="crimeintel-logo.svg" alt="CrimeIntel Logo" class="brand-emblem">
+        <div class="brand-info">
+          <!-- Logo Emblem -->
+        </div>
+      </div>
+
+      <!-- Header Controls: Notification Bell, Profile, Theme, Sign Out -->
+      <div class="topbar-right">
+        <!-- Notification Bell -->
+        <button id="notificationBellBtn" onclick="openAlertsModal()" class="btn btn-secondary" style="padding: 6px 12px; font-size: 14px; display: inline-flex; align-items: center; gap: 6px;" title="Open Authorized System Alerts">
+          <span>🔔</span>
+          <span id="globalAlertsBadge" class="badge badge-danger" style="font-size: 10px; padding: 1px 5px; border-radius: 10px;">0</span>
+        </button>
+
+        <!-- User Role Badge & Scope Display -->
+        <div class="flex items-center gap-1.5" style="background: var(--ci-card-sub); border: 1px solid var(--ci-border); padding: 4px 10px; border-radius: var(--ci-radius-md);">
+          <span style="font-size: 14px;">👮</span>
+          <div style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
+            <strong id="currentUserLabel" style="font-size: 12px; color: var(--ci-navy);">Asha Kulkarni</strong>
+            <span id="currentUserRole" style="font-size: 10px; color: var(--ci-teal-dark); font-weight: 600;">INVESTIGATOR</span>
+          </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button onclick="toggleTheme()" class="btn btn-secondary btn-icon" title="Toggle Light/Dark Theme">
+          <span id="themeIcon">🌙</span>
+        </button>
+
+        <!-- Logout Action -->
+        <button onclick="handleLogout()" class="btn btn-secondary btn-sm" title="Sign Out from Session">
+          <span>🚪 Sign Out</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- APP WORKSPACE (SIDEBAR + MAIN CONTENT) -->
+    <div class="app-layout">
+      
+      <!-- LEFT SIDEBAR NAVIGATION -->
+      <aside class="app-sidebar">
+        <div>
+          <div id="navGroupTitle" class="nav-group-title">Navigation Workspace</div>
+          <nav class="sidebar-nav">
+            <!-- Administrator-Specific Tabs -->
+            <button id="tabBtn-executive" onclick="switchTab('executive')" class="nav-item tab-btn">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">Executive Dashboard</span>
+            </button>
+            <button id="tabBtn-casemanagement" onclick="switchTab('casemanagement')" class="nav-item tab-btn">
+              <span class="nav-icon">📁</span>
+              <span class="nav-text">Crime Records & Cases</span>
+            </button>
+            <button id="tabBtn-geomap" onclick="switchTab('geomap')" class="nav-item tab-btn">
+              <span class="nav-icon">🗺️</span>
+              <span class="nav-text">Location Crime Map</span>
+            </button>
+            <button id="tabBtn-workload" onclick="switchTab('workload')" class="nav-item tab-btn">
+              <span class="nav-icon">👮</span>
+              <span class="nav-text">Officer Workload & Stats</span>
+            </button>
+
+            <!-- Investigator-Specific Tabs -->
+            <button id="tabBtn-constellation" onclick="switchTab('constellation')" class="nav-item tab-btn">
+              <span class="nav-icon">🕸️</span>
+              <span class="nav-text">Network Graph</span>
+            </button>
+            <button id="tabBtn-compare" onclick="switchTab('compare')" class="nav-item tab-btn">
+              <span class="nav-icon">⚖️</span>
+              <span class="nav-text">Case Comparison</span>
+            </button>
+            <button id="tabBtn-inv-dashboard" onclick="switchTab('inv-dashboard')" class="nav-item tab-btn">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">My Dashboard</span>
+            </button>
+            <button id="tabBtn-inv-cases" onclick="switchTab('inv-cases')" class="nav-item tab-btn">
+              <span class="nav-icon">📁</span>
+              <span class="nav-text">My Cases</span>
+            </button>
+            <button id="tabBtn-inv-map" onclick="switchTab('inv-map')" class="nav-item tab-btn">
+              <span class="nav-icon">🗺️</span>
+              <span class="nav-text">My Area Map</span>
+            </button>
+            <button id="tabBtn-timeline" onclick="switchTab('timeline')" class="nav-item tab-btn">
+              <span class="nav-icon">⏱️</span>
+              <span class="nav-text">Case Timeline</span>
+            </button>
+
+            <!-- Shared Tabs -->
+            <button id="tabBtn-assistant" onclick="switchTab('assistant')" class="nav-item tab-btn">
+              <span class="nav-icon">🤖</span>
+              <span class="nav-text">AI Investigation Assistant</span>
+            </button>
+            <button id="tabBtn-validations" onclick="switchTab('validations')" class="nav-item tab-btn">
+              <span class="nav-icon">🛡️</span>
+              <span class="nav-text">Review Queue</span>
+              <span id="pendingValidationsCount" class="nav-badge">0</span>
+            </button>
+          </nav>
+        </div>
+
+        <!-- Sidebar Footer Action Shortcuts -->
+        <div class="sidebar-footer">
+          <button id="sidebarRegisterFirBtn" onclick="openRegisterFirModal()" class="btn btn-primary w-full" style="font-size: 13px;">
+            <span>➕</span> Register New FIR
+          </button>
+          <button id="sidebarAddEvidenceBtn" onclick="openAddEvidenceModal()" class="btn btn-secondary w-full" style="font-size: 13px;">
+            <span>📎</span> Add Case Evidence
+          </button>
+          <div id="userRolePermsBadge" class="badge badge-muted text-center" style="font-size: 10px; width: 100%;">
+            PORTAL WORKSPACE
+          </div>
+          <div style="font-size: 11px; color: var(--ci-text-muted); text-align: center; line-height: 1.4;">
+            Jurisdiction: <span id="userJurisdictionText" style="color: var(--ci-navy); font-weight: 600;">Authorized Area</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN WORKSPACE -->
+      <main class="app-main">
+
+        <!-- ============================================================
+             TAB: EXECUTIVE / ADMINISTRATOR DASHBOARD
+             ============================================================ -->
+        <section id="tab-executive" class="tab-content hidden">
+          <div class="flex flex-col gap-4">
+            
+            <!-- Executive Banner -->
+            <div class="card" style="border-left: 4px solid var(--ci-teal); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <div style="font-size: 17px; font-weight: 700; color: var(--ci-navy);">Executive & Administrative Operational View</div>
+                <div style="font-size: 12.5px; color: var(--ci-text-muted);">District-wise statistics, aging investigations, and verifiable officer operational metrics across all jurisdictions.</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="loadExecutiveDashboard()" class="btn btn-secondary btn-sm">
+                  <span>↺ Refresh Metrics</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Compact Summary Metrics (6 Cards) -->
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+              <div class="metric-card" onclick="filterExecutiveStatus('all')" title="Filter all registered cases">
+                <div>
+                  <div id="execTotalCases" class="metric-val">30</div>
+                  <div class="metric-lbl">Total Registered Cases</div>
+                </div>
+                <span style="font-size: 26px;">📁</span>
+              </div>
+              <div class="metric-card" onclick="filterExecutiveStatus('open')" title="Filter active investigations">
+                <div>
+                  <div id="execOpenCases" class="metric-val" style="color: var(--ci-info);">24</div>
+                  <div class="metric-lbl">Open Cases</div>
+                </div>
+                <span style="font-size: 26px;">🔓</span>
+              </div>
+              <div class="metric-card" onclick="filterExecutiveStatus('pending')" title="Filter pending investigations">
+                <div>
+                  <div id="execPendingCases" class="metric-val" style="color: var(--ci-warning);">4</div>
+                  <div class="metric-lbl">Pending Cases</div>
+                </div>
+                <span style="font-size: 26px;">⏳</span>
+              </div>
+              <div class="metric-card" onclick="filterExecutiveStatus('closed')" title="Filter closed cases">
+                <div>
+                  <div id="execClosedCases" class="metric-val" style="color: var(--ci-success);">2</div>
+                  <div class="metric-lbl">Closed Cases</div>
+                </div>
+                <span style="font-size: 26px;">✅</span>
+              </div>
+              <div class="metric-card" onclick="filterExecutiveStatus('critical')" title="Filter high-priority critical cases">
+                <div>
+                  <div id="execCriticalCases" class="metric-val" style="color: var(--ci-danger);">7</div>
+                  <div class="metric-lbl">High-Priority Cases</div>
+                </div>
+                <span style="font-size: 26px;">🚨</span>
+              </div>
+              <div class="metric-card" onclick="switchTab('validations')" title="Open review queue awaiting validation">
+                <div>
+                  <div id="execPendingValidations" class="metric-val" style="color: var(--ci-amber);">22</div>
+                  <div class="metric-lbl">Awaiting Validation</div>
+                </div>
+                <span style="font-size: 26px;">🛡️</span>
+              </div>
+            </div>
+
+            <!-- Visualizations Row 1: Registration Trends & Case Status Distribution -->
+            <div class="grid" style="grid-template-columns: 1fr 360px; gap: 16px;">
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title"><span>📈</span> Case Registration Trends Over Time</span>
+                </div>
+                <div style="height: 250px;">
+                  <canvas id="execRegistrationTrendsChart"></canvas>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title"><span>🥧</span> Case Status Distribution</span>
+                </div>
+                <div style="height: 250px;">
+                  <canvas id="execStatusDoughnutChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visualizations Row 2: Monthly Trends & Crime Type Classification -->
+            <div class="grid" style="grid-template-columns: 1fr 360px; gap: 16px;">
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title"><span>📊</span> Monthly Incident & Investigation Intake Trends</span>
+                </div>
+                <div style="height: 250px;">
+                  <canvas id="monthlyTrendChart"></canvas>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title"><span>🏷️</span> Crime Type Classification</span>
+                </div>
+                <div style="height: 250px;">
+                  <canvas id="crimeTypeDoughnutChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- District / City Wise Summary & Aging Cases Requiring Closure -->
+            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+              <!-- District Summary Table -->
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title"><span>🏛️</span> District Operational Distribution</span>
+                </div>
+                <div style="overflow-x: auto;">
+                  <table class="civic-table">
+                    <thead>
+                      <tr>
+                        <th>District / Range</th>
+                        <th>Total Cases</th>
+                        <th>Open</th>
+                        <th>Critical</th>
+                        <th>Stations</th>
+                      </tr>
+                    </thead>
+                    <tbody id="execDistrictTableBody">
+                      <tr><td colspan="5" style="text-align:center;">Loading district statistics...</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Severe Case Aging Table (Without Action Column) -->
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title"><span>⏳</span> Aging Cases Requiring Operational Closure</span>
+                  <span class="badge badge-danger">Strict Review</span>
+                </div>
+                <div style="overflow-x: auto;">
+                  <table class="civic-table">
+                    <thead>
+                      <tr>
+                        <th>Case Number</th>
+                        <th>City / Station</th>
+                        <th>Priority</th>
+                        <th>Days Open</th>
+                      </tr>
+                    </thead>
+                    <tbody id="execAgingTableBody">
+                      <tr><td colspan="4" style="text-align:center;">Analyzing case aging...</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: CRIME RECORDS AND CASE MANAGEMENT
+             ============================================================ -->
+        <section id="tab-casemanagement" class="tab-content hidden">
+          <div class="flex flex-col gap-4">
+            
+            <!-- Case Management Filter & Search Bar -->
+            <div class="card flex flex-col gap-3">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <div>
+                  <div style="font-size: 17px; font-weight: 700; color: var(--ci-navy);">Crime Records & Case Management Workspace</div>
+                  <div style="font-size: 12.5px; color: var(--ci-text-muted);">
+                    Search, filter, and inspect verified case records, assigned personnel, evidence exhibits, and network links.
+                  </div>
+                </div>
+                <span id="caseManagementCountBadge" class="badge badge-teal">Loading cases...</span>
+              </div>
+
+              <div class="grid" style="grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 10px; align-items: center;">
+                <input id="caseMgmtSearch" type="text" class="form-input" placeholder="🔍 Search by Case ID, title, category, location, investigator..." oninput="filterCaseManagement()">
+                
+                <select id="caseMgmtStatusFilter" class="form-select" onchange="filterCaseManagement()">
+                  <option value="all">All Statuses</option>
+                  <option value="open">Open</option>
+                  <option value="pending">Pending</option>
+                  <option value="closed">Closed</option>
+                </select>
+
+                <select id="caseMgmtPriorityFilter" class="form-select" onchange="filterCaseManagement()">
+                  <option value="all">All Priorities</option>
+                  <option value="critical">Critical</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+
+                <select id="caseMgmtCityFilter" class="form-select" onchange="filterCaseManagement()">
+                  <option value="all">All Jurisdictions</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Satara">Satara</option>
+                  <option value="Pimpri-Chinchwad">Pimpri-Chinchwad</option>
+                  <option value="Nashik">Nashik</option>
+                  <option value="Thane">Thane</option>
+                </select>
+
+                <button onclick="resetCaseManagementFilters()" class="btn btn-secondary">
+                  <span>↺ Reset</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Case Records Table -->
+            <div class="card" style="padding: 0; overflow: hidden;">
+              <div style="overflow-x: auto;">
+                <table class="civic-table">
+                  <thead>
+                    <tr>
+                      <th>Case ID</th>
+                      <th>Incident Title</th>
+                      <th>Crime Category</th>
+                      <th>Jurisdiction / Station</th>
+                      <th>Assigned Lead</th>
+                      <th>Registered Date</th>
+                      <th>Status</th>
+                      <th>Priority</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="caseManagementTableBody">
+                    <tr><td colspan="9" style="text-align:center; padding: 24px;">Loading verified case registry...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Case Detail Inspection Panel -->
+            <div id="caseDetailInspectionSection" class="card hidden" style="border-left: 4px solid var(--ci-teal); padding: 18px;">
+              <div class="flex items-center justify-between pb-3" style="border-bottom: 1px solid var(--ci-border); flex-wrap: wrap; gap: 10px;">
+                <div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span id="inspectCaseIdBadge" class="badge badge-teal" style="font-size: 13px;">C001</span>
+                    <strong id="inspectCaseTitle" style="font-size: 17px; color: var(--ci-navy);">Case Title</strong>
+                    <span id="inspectCaseStatusBadge" class="badge badge-success">OPEN</span>
+                    <span id="inspectCasePriorityBadge" class="badge badge-danger">CRITICAL</span>
+                  </div>
+                  <div id="inspectCaseMeta" style="font-size: 12px; color: var(--ci-text-muted); margin-top: 4px;">
+                    Station • Date • Jurisdiction
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="navigateCaseToGraph()" class="btn btn-secondary btn-sm">🕸️ Network Graph</button>
+                  <button onclick="navigateCaseToTimeline()" class="btn btn-secondary btn-sm">⏱️ Timeline</button>
+                  <button onclick="navigateCaseToAssistant()" class="btn btn-primary btn-sm">🤖 Ask AI</button>
+                  <button onclick="generateChargesheetModal(currentInspectedCaseId)" class="btn btn-secondary btn-sm" style="font-weight: 600; color: var(--ci-teal-dark);">📝 Draft Chargesheet</button>
+                  <button onclick="closeCaseInspection()" class="btn btn-secondary btn-sm">✕ Close</button>
+                </div>
+              </div>
+
+              <!-- Case Detail Grid -->
+              <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px;">
+                <!-- Left Column -->
+                <div class="flex flex-col gap-3">
+                  <div class="card-sub p-3">
+                    <div style="font-weight: 700; color: var(--ci-navy); font-size: 12px; text-transform: uppercase;">
+                      📋 Case Overview & Last Meaningful Update
+                    </div>
+                    <p id="inspectCaseSummary" style="font-size: 13px; line-height: 1.5; margin-top: 6px; color: var(--ci-text-main);"></p>
+                    <div style="font-size: 11.5px; color: var(--ci-text-muted); margin-top: 6px;">
+                      Last Formal Update: <strong id="inspectCaseLastUpdate">2026-03-14</strong>
+                    </div>
+                  </div>
+
+                  <div class="card-sub p-3">
+                    <div style="font-weight: 700; color: var(--ci-navy); font-size: 12px; text-transform: uppercase;">
+                      👮 Assigned Investigators
+                    </div>
+                    <div id="inspectCaseTeam" class="flex flex-col gap-1.5 mt-2" style="font-size: 12.5px;"></div>
+                  </div>
+
+                  <div class="card-sub p-3">
+                    <div style="font-weight: 700; color: var(--ci-warning); font-size: 12px; text-transform: uppercase;">
+                      ⏳ Pending Investigation Tasks
+                    </div>
+                    <div id="inspectCasePendingTasks" class="flex flex-col gap-1 mt-2" style="font-size: 12.5px;"></div>
+                  </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="flex flex-col gap-3">
+                  <div class="card-sub p-3">
+                    <div style="font-weight: 700; color: var(--ci-teal-dark); font-size: 12px; text-transform: uppercase;">
+                      👥 Associated Entities (Persons, Vehicles, Phones)
+                    </div>
+                    <div id="inspectCaseEntities" class="flex flex-wrap gap-1.5 mt-2"></div>
+                  </div>
+
+                  <div class="card-sub p-3">
+                    <div style="font-weight: 700; color: var(--ci-navy); font-size: 12px; text-transform: uppercase;">
+                      📑 Case Documents & Evidence Exhibits
+                    </div>
+                    <div id="inspectCaseDocs" class="flex flex-col gap-1.5 mt-2" style="font-size: 12px;"></div>
+                  </div>
+
+                  <div class="card-sub p-3">
+                    <div style="font-weight: 700; color: var(--ci-teal-dark); font-size: 12px; text-transform: uppercase;">
+                      🔗 Related Cases (Cross-Case Links)
+                    </div>
+                    <div id="inspectCaseLinks" class="flex flex-col gap-1.5 mt-2" style="font-size: 12px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: OFFICER WORKLOAD AND OPERATIONAL STATISTICS
+             ============================================================ -->
+        <section id="tab-workload" class="tab-content hidden">
+          <div class="flex flex-col gap-4">
+            
+            <div class="card" style="border-left: 4px solid var(--ci-navy); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <div style="font-size: 17px; font-weight: 700; color: var(--ci-navy);">Officer Workload & Operational Assignment Oversight</div>
+                <div style="font-size: 12.5px; color: var(--ci-text-muted);">
+                  Restricted supervisory distribution of active caseloads, investigation durations, and pending validation tasks across authorized units.
+                </div>
+              </div>
+              <button onclick="loadOfficerWorkload()" class="btn btn-secondary btn-sm">
+                <span>↺ Refresh Workload Data</span>
+              </button>
+            </div>
+
+            <!-- Top Metric Widgets -->
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+              <div class="metric-card">
+                <div>
+                  <div id="workloadActiveOfficers" class="metric-val">4</div>
+                  <div class="metric-lbl">Active Field Investigators</div>
+                </div>
+                <span style="font-size: 26px;">👮</span>
+              </div>
+              <div class="metric-card">
+                <div>
+                  <div id="workloadAvgCaseload" class="metric-val" style="color: var(--ci-info);">6.0</div>
+                  <div class="metric-lbl">Average Active Cases / Officer</div>
+                </div>
+                <span style="font-size: 26px;">⚖️</span>
+              </div>
+              <div class="metric-card">
+                <div>
+                  <div id="workloadTotalPendingTasks" class="metric-val" style="color: var(--ci-warning);">18</div>
+                  <div class="metric-lbl">Pending Review Tasks</div>
+                </div>
+                <span style="font-size: 26px;">⏳</span>
+              </div>
+              <div class="metric-card">
+                <div>
+                  <div id="workloadAgingCases" class="metric-val" style="color: var(--ci-danger);">5</div>
+                  <div class="metric-lbl">Cases Open >60 Days</div>
+                </div>
+                <span style="font-size: 26px;">⚠️</span>
+              </div>
+            </div>
+
+            <!-- Officer Assignment & Workload Table -->
+            <div class="card" style="padding: 0; overflow: hidden;">
+              <div class="card-header" style="padding: 12px 18px; margin: 0; background: var(--ci-card-sub);">
+                <span class="card-title"><span>📋</span> Active Caseload & Task Allocation by Officer</span>
+                <span class="badge badge-teal">Live Database Records</span>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="civic-table">
+                  <thead>
+                    <tr>
+                      <th>Officer ID</th>
+                      <th>Investigator Name</th>
+                      <th>Unit / Station</th>
+                      <th>Total Assigned</th>
+                      <th>Open Cases</th>
+                      <th>Pending Review</th>
+                      <th>Pending Validations</th>
+                      <th>Latest Logged Audit Action</th>
+                      <th>Assigned Case Numbers</th>
+                    </tr>
+                  </thead>
+                  <tbody id="workloadOfficerTableBody">
+                    <tr><td colspan="9" style="text-align:center; padding: 24px;">Loading officer assignment data...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Case Age Distribution & Unit Workload Balance Row -->
+            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+              <!-- Case Age Distribution Breakdown -->
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title"><span>⏱️</span> Caseload Age Distribution</span>
+                </div>
+                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;">
+                  <div class="card-sub p-3 text-center">
+                    <div id="ageUnder30" class="metric-val" style="font-size: 20px; color: var(--ci-success);">8</div>
+                    <div style="font-size: 11.5px; color: var(--ci-text-muted);">&lt; 30 Days (Recent Filing)</div>
+                  </div>
+                  <div class="card-sub p-3 text-center">
+                    <div id="age30to60" class="metric-val" style="font-size: 20px; color: var(--ci-info);">12</div>
+                    <div style="font-size: 11.5px; color: var(--ci-text-muted);">30–60 Days (In Progress)</div>
+                  </div>
+                  <div class="card-sub p-3 text-center">
+                    <div id="age60to90" class="metric-val" style="font-size: 20px; color: var(--ci-warning);">6</div>
+                    <div style="font-size: 11.5px; color: var(--ci-text-muted);">60–90 Days (Aging)</div>
+                  </div>
+                  <div class="card-sub p-3 text-center">
+                    <div id="ageOver90" class="metric-val" style="font-size: 20px; color: var(--ci-danger);">4</div>
+                    <div style="font-size: 11.5px; color: var(--ci-text-muted);">&gt; 90 Days (Priority Bottleneck)</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Unit Workload Balance -->
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title"><span>🏛️</span> Workload Balance Across Authorized Units</span>
+                </div>
+                <div id="workloadUnitBalanceList" class="flex flex-col gap-2 mt-2">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Metric Definitions & Guidelines Box -->
+            <div class="card-sub p-3" style="font-size: 12px; line-height: 1.6; border-left: 3px solid var(--ci-teal);">
+              <strong>Supervisory Metric Definitions:</strong>
+              <ul style="margin-left: 18px; margin-top: 4px; list-style-type: disc;">
+                <li><strong>Assigned Caseload:</strong> Count of official FIR registrations in database where officer is designated primary or lead investigator.</li>
+                <li><strong>Pending Validations:</strong> Inferred cross-case candidates and entity links originating from the officer's cases awaiting formal investigator sign-off in the Review Queue.</li>
+                <li><strong>Supervisory Guideline:</strong> In accordance with standard police oversight policies, recorded volume metrics measure administrative caseload allocation and operational bandwidth. They do not constitute an arbitrary quantitative ranking of investigative effectiveness or officer competence.</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: INTERACTIVE GEOGRAPHICAL LOCATION MAP
+             ============================================================ -->
+        <section id="tab-geomap" class="tab-content hidden">
+          <div class="flex flex-col gap-4">
+
+            <!-- Map Header & Filter Toolbar -->
+            <div class="card flex flex-col gap-3">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <div>
+                  <div style="font-size: 17px; font-weight: 700; color: var(--ci-navy);">Interactive Location-Based Crime Incident Map</div>
+                  <div style="font-size: 12.5px; color: var(--ci-text-muted);">
+                    Spatial incident documentation, evidence location correlation, and corridor density analysis.
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="segmented-group">
+                    <button id="mapViewToggleBtnMap" onclick="toggleMapDisplayMode('map')" class="seg-btn active">🗺️ Map View</button>
+                    <button id="mapViewToggleBtnTable" onclick="toggleMapDisplayMode('table')" class="seg-btn">📋 Table Alternative</button>
+                  </div>
+                  <button onclick="loadGeoIncidentMap()" class="btn btn-secondary btn-sm">
+                    <span>↺ Refresh</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Filter Controls Toolbar -->
+              <div class="grid" style="grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 10px; align-items: center;">
+                <input id="mapSearchInput" type="text" class="form-input" placeholder="🔍 Search incidents by case, location name, or keyword..." oninput="loadGeoIncidentMap()">
+                
+                <select id="mapCityFilter" onchange="loadGeoIncidentMap()" class="form-select">
+                  <option value="all">All Jurisdictions</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Pimpri-Chinchwad">Pimpri-Chinchwad</option>
+                  <option value="Satara">Satara</option>
+                  <option value="Nashik">Nashik</option>
+                  <option value="Thane">Thane</option>
+                </select>
+
+                <select id="mapTypeFilter" onchange="loadGeoIncidentMap()" class="form-select">
+                  <option value="all">All Crime Types</option>
+                  <option value="vehicle">Vehicle Theft</option>
+                  <option value="property">Property Burglary</option>
+                  <option value="robbery">Highway Robbery</option>
+                  <option value="fraud">Cargo Fraud</option>
+                  <option value="organized_crime">Organized Ring</option>
+                </select>
+
+                <select id="mapStatusFilter" onchange="loadGeoIncidentMap()" class="form-select">
+                  <option value="all">All Statuses</option>
+                  <option value="open">Open</option>
+                  <option value="pending">Pending</option>
+                  <option value="closed">Closed</option>
+                </select>
+
+                <span id="mapMarkerCountBadge" class="badge badge-teal" style="white-space: nowrap;">0 Incidents</span>
+              </div>
+            </div>
+
+            <!-- VIEW 1: Leaflet Interactive Map View -->
+            <div id="geomapMapViewContainer" class="map-workspace">
+              <!-- Map Canvas -->
+              <div class="card map-card" style="padding: 0; overflow: hidden; position: relative;">
+                <div id="geoIncidentMap" class="map-canvas" style="height: 520px; width: 100%;"></div>
+                <div class="graph-hint" style="font-size: 11px; padding: 6px 12px; background: var(--ci-card-sub); border-top: 1px solid var(--ci-border);">
+                  📍 <strong>Synthetic Coordinates Notice:</strong> Geographic points are synthetic research coordinates for demonstration. Spatial density reflects recorded case history and does not represent a predictive crime forecast.
+                </div>
+              </div>
+
+              <!-- Selected Location Inspector Card -->
+              <div class="card inspector-card">
+                <div class="card-header">
+                  <span class="card-title"><span>📌</span> Incident & Evidence Inspector</span>
+                </div>
+
+                <div id="mapLocationDetailBody" class="inspector-body">
+                  <div style="text-align: center; padding: 40px 10px; color: var(--ci-text-muted);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🗺️</div>
+                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Select Any Map Marker</div>
+                    <p style="font-size: 12.5px; line-height: 1.5;">
+                      Click an incident site or evidence marker on the map to inspect case title, modus operandi, connected suspects, and spatial proximity.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW 2: List / Table Alternative to the Map -->
+            <div id="geomapTableViewContainer" class="card hidden" style="padding: 0; overflow: hidden;">
+              <div class="card-header" style="padding: 12px 18px; margin: 0; background: var(--ci-card-sub);">
+                <span class="card-title"><span>📋</span> Tabular Incident & Evidence Location Log</span>
+                <span class="badge badge-teal">Accessible List Alternative</span>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="civic-table">
+                  <thead>
+                    <tr>
+                      <th>Incident ID</th>
+                      <th>Case Ref</th>
+                      <th>Title & Description</th>
+                      <th>Crime Category</th>
+                      <th>Location Name</th>
+                      <th>City / District</th>
+                      <th>Coordinates</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="mapIncidentTableBody">
+                    <tr><td colspan="8" style="text-align:center; padding: 24px;">Loading incident list...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Spatial Concentration & Hotspot Analysis Box -->
+            <div class="card" style="border-left: 3px solid var(--ci-teal);">
+              <div class="card-header">
+                <span class="card-title"><span>🔥</span> Spatial Concentration Analysis (Recorded Case Density)</span>
+                <span class="badge badge-teal">Kernel Density Indicator</span>
+              </div>
+              <div class="grid" style="grid-template-columns: 2fr 1fr; gap: 16px; margin-top: 8px;">
+                <div style="font-size: 12.5px; line-height: 1.6; color: var(--ci-text-main);">
+                  <p>
+                    <strong>Observed Corridor Concentration:</strong> In the synthetic 2024–2026 dataset, <strong>6 recorded incidents</strong> are concentrated along the <em>Pune Swargate to Satara NH-48 transit corridor</em>, primarily involving commercial cargo interception and vehicle bypass patterns.
+                  </p>
+                  <p style="margin-top: 6px; font-size: 12px; color: var(--ci-text-muted);">
+                    <strong>Calculation Methodology:</strong> Spatial kernel density is calculated using the geographic proximity of recorded FIR incident locations and linked evidence sighting points within a 15 km bandwidth.
+                  </p>
+                </div>
+                <div class="card-sub p-3" style="font-size: 11.5px; line-height: 1.5; color: var(--ci-text-muted);">
+                  ⚠️ <strong>Ethical Disclaimer:</strong> High incident density indicates historical case recording volume only. It does not label a community as dangerous, nor does it constitute an automated prediction of future crime without a separately validated predictive framework.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: CASE CONSTELLATION NETWORK GRAPH
+             ============================================================ -->
+        <section id="tab-constellation" class="tab-content">
+          <div class="graph-workspace">
+            
+            <div class="card graph-main-card">
+              <div class="graph-toolbar">
+                <div class="segmented-group">
+                  <button onclick="filterGraph('all')" class="seg-btn graph-filter-btn active">All Entities</button>
+                  <button onclick="filterGraph('case_only')" class="seg-btn graph-filter-btn">Active Case Only</button>
+                  <button onclick="filterGraph('person')" class="seg-btn graph-filter-btn">Persons</button>
+                  <button onclick="filterGraph('phone')" class="seg-btn graph-filter-btn">Phones</button>
+                  <button onclick="filterGraph('vehicle')" class="seg-btn graph-filter-btn">Vehicles</button>
+                  <button onclick="filterGraph('organization')" class="seg-btn graph-filter-btn">Orgs</button>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <button onclick="toggleEgoMode('P005')" class="btn btn-secondary btn-sm" title="Focus radius on key suspect">
+                    <span>🎯</span> Focus Ego
+                  </button>
+                  <button onclick="loadCommunities()" class="btn btn-secondary btn-sm" title="Compute Louvain community modularity">
+                    <span>👥</span> Clusters
+                  </button>
+                  <button onclick="loadCentralityRanks()" class="btn btn-secondary btn-sm" title="List betweenness bridge suspects">
+                    <span>🏆</span> Top Bridges
+                  </button>
+                  <button onclick="resetGraphPhysics()" class="btn btn-secondary btn-sm" title="Reset layout">
+                    <span>↺</span> Reset
+                  </button>
+                </div>
+              </div>
+
+              <div id="networkCanvas" class="graph-canvas-container"></div>
+              
+              <div class="graph-hint">
+                💡 Click any <strong>Node</strong> to inspect entity • Click an <strong>Edge</strong> to open verified evidence
+              </div>
+            </div>
+
+            <div class="card inspector-card">
+              <div class="card-header">
+                <span class="card-title"><span>🔎</span> Entity Intelligence</span>
+                <span id="selectedNodeTypeBadge" class="badge badge-muted">Select Node</span>
+              </div>
+              <div id="inspectorContent" class="inspector-body">
+                <div style="text-align: center; padding: 40px 10px; color: var(--ci-text-muted);">
+                  <div style="font-size: 32px; margin-bottom: 8px;">🕸️</div>
+                  <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">No Entity Selected</div>
+                  <p style="font-size: 12.5px; line-height: 1.5;">
+                    Click any suspect or phone node on the constellation network to inspect degree centrality, criminal profile, known aliases, and linked cases.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: FORENSIC CROSS-CASE COMPARE
+             ============================================================ -->
+        <section id="tab-compare" class="tab-content hidden">
+          <div class="card space-y-4">
+            <div class="card-header flex-wrap gap-2">
+              <div>
+                <span class="card-title"><span>⚖️</span> Forensic Compare (Dedicated Side-by-Side Analysis)</span>
+                <p style="font-size: 12px; color: var(--ci-text-muted); margin-top: 2px;">
+                  Side-by-side multi-factor forensic comparison of independent FIR cases evaluating Modus Operandi (MO), spatial corridors, timelines, and entity overlap.
+                </p>
+              </div>
+              
+              <div class="flex items-center gap-2 flex-wrap">
+                <select id="compareCaseA" class="form-select" style="font-size: 13px; font-weight: 700;"></select>
+                <span style="font-weight: 700; color: var(--ci-teal); font-size: 13px;">VS</span>
+                <select id="compareCaseB" class="form-select" style="font-size: 13px; font-weight: 700;"></select>
+                <button onclick="runForensicCompare()" class="btn btn-primary">
+                  <span>⚡</span> Run Compare
+                </button>
+              </div>
+            </div>
+
+            <!-- Plain-Language Explainer Banner: Modus Operandi & Multi-Factor Linking -->
+            <div class="card-sub" style="border-left: 4px solid var(--ci-teal); background: var(--ci-teal-soft); font-size: 12px; line-height: 1.5; color: var(--ci-navy);">
+              <div class="flex gap-2 items-start">
+                <span style="font-size: 18px;">💡</span>
+                <div>
+                  <strong>Understanding Forensic MO & Multi-Factor Cross-Case Linking:</strong><br>
+                  • <strong>Modus Operandi (MO):</strong> The specific method, technique, or behavioral pattern used by perpetrators to commit an offense (e.g. night shutter tampering, route ambush, decoy vehicle breakdown).<br>
+                  • <strong>Investigative Lead vs. Conviction:</strong> Cross-case linking helps detectives identify multi-jurisdictional leads. When no shared suspects exist, links are similarity-based patterns and <em>must not</em> be asserted as proof of common identity without forensic proof.<br>
+                  • <strong>Presets:</strong> 
+                  <button onclick="setComparePreset('C005', 'C021')" class="badge badge-teal cursor-pointer">C005 vs C021 (Highway Robbery • 0 Shared Persons • Pattern Lead)</button>
+                  <button onclick="setComparePreset('C003', 'C004')" class="badge badge-teal cursor-pointer">C003 vs C004 (Cargo Fraud • 1 Shared Person)</button>
+                  <button onclick="setComparePreset('C018', 'C019')" class="badge badge-teal cursor-pointer">C018 vs C019 (Syndicate • 3 Shared Persons)</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid" style="grid-template-columns: 1fr 340px; gap: 16px;">
+              <div id="compareScorePips" class="flex flex-col gap-3"></div>
+              <div class="card-sub flex flex-col items-center justify-center" style="height: 250px;">
+                <canvas id="compareRadarChart"></canvas>
+              </div>
+            </div>
+
+            <div id="compareDetailsContainer" class="pt-2"></div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: INVESTIGATOR MY DASHBOARD
+             ============================================================ -->
+        <section id="tab-inv-dashboard" class="tab-content hidden">
+          <div class="space-y-4">
+
+            <!-- Header -->
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+              <div>
+                <div style="font-size:18px; font-weight:800; color:var(--ci-navy);">📊 My Operational Dashboard</div>
+                <div style="font-size:12.5px; color:var(--ci-text-muted); margin-top:2px;">Case metrics filtered to your assigned jurisdiction only.</div>
+              </div>
+              <span id="invDashJurisdiction" class="badge badge-teal" style="font-size:11.5px; padding:5px 12px;"></span>
+            </div>
+
+            <!-- KPI Row -->
+            <div class="grid" style="grid-template-columns: repeat(4,1fr); gap: 14px;">
+              <div style="background:var(--ci-card); border:1px solid var(--ci-border); border-radius:12px; padding:18px 16px; position:relative; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg,#153746,#0EA5B7);"></div>
+                <div style="font-size:10px; font-weight:700; color:var(--ci-text-muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Total Cases</div>
+                <div id="invDashTotal" style="font-size:36px; font-weight:900; color:var(--ci-navy); line-height:1;">—</div>
+                <div style="font-size:11px; color:var(--ci-text-muted); margin-top:6px;">In your jurisdiction</div>
+                <div style="position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:32px; opacity:0.08;">🗂️</div>
+              </div>
+              <div style="background:var(--ci-card); border:1px solid var(--ci-border); border-radius:12px; padding:18px 16px; position:relative; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg,#0EA5B7,#06d6a0);"></div>
+                <div style="font-size:10px; font-weight:700; color:var(--ci-text-muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Open Cases</div>
+                <div id="invDashOpen" style="font-size:36px; font-weight:900; color:#0EA5B7; line-height:1;">—</div>
+                <div style="font-size:11px; color:var(--ci-text-muted); margin-top:6px;">Requiring active attention</div>
+                <div style="position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:32px; opacity:0.08;">📂</div>
+              </div>
+              <div style="background:var(--ci-card); border:1px solid var(--ci-border); border-radius:12px; padding:18px 16px; position:relative; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg,#BD3C3C,#f97316);"></div>
+                <div style="font-size:10px; font-weight:700; color:var(--ci-text-muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Critical Priority</div>
+                <div id="invDashCritical" style="font-size:36px; font-weight:900; color:#BD3C3C; line-height:1;">—</div>
+                <div style="font-size:11px; color:var(--ci-text-muted); margin-top:6px;">Immediate escalation needed</div>
+                <div style="position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:32px; opacity:0.08;">🚨</div>
+              </div>
+              <div style="background:var(--ci-card); border:1px solid var(--ci-border); border-radius:12px; padding:18px 16px; position:relative; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg,#B27418,#eab308);"></div>
+                <div style="font-size:10px; font-weight:700; color:var(--ci-text-muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Pending Validations</div>
+                <div id="invDashPending" style="font-size:36px; font-weight:900; color:#B27418; line-height:1;">—</div>
+                <div style="font-size:11px; color:var(--ci-text-muted); margin-top:6px;">AI-suggested links awaiting review</div>
+                <div style="position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:32px; opacity:0.08;">⏳</div>
+              </div>
+            </div>
+
+            <!-- Status + Type breakdown -->
+            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div style="background:var(--ci-card); border:1px solid var(--ci-border); border-radius:12px; padding:16px 18px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div style="font-size:12px; font-weight:800; color:var(--ci-navy); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:14px; border-bottom:1px solid var(--ci-border); padding-bottom:8px;">📋 Cases by Status</div>
+                <div id="invDashStatusBreakdown">
+                  <div style="color:var(--ci-text-muted); font-size:12px;">Loading…</div>
+                </div>
+              </div>
+              <div style="background:var(--ci-card); border:1px solid var(--ci-border); border-radius:12px; padding:16px 18px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div style="font-size:12px; font-weight:800; color:var(--ci-navy); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:14px; border-bottom:1px solid var(--ci-border); padding-bottom:8px;">🏷️ Cases by Type</div>
+                <div id="invDashTypeBreakdown">
+                  <div style="color:var(--ci-text-muted); font-size:12px;">Loading…</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: INVESTIGATOR MY CASES
+             ============================================================ -->
+        <section id="tab-inv-cases" class="tab-content hidden">
+          <div class="space-y-3">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <span class="card-title"><span>📁</span> My Cases</span>
+                  <p style="font-size: 12.5px; color: var(--ci-text-muted); margin-top: 2px;">
+                    Cases within your assigned jurisdiction. Search and filter to find a specific case.
+                  </p>
+                </div>
+                <span id="invCasesCountBadge" class="badge badge-teal">Loading…</span>
+              </div>
+              <div class="flex items-center gap-2 flex-wrap" style="margin-top: 12px;">
+                <input id="invCasesSearch" type="text" class="form-input" style="flex:1; min-width:200px;"
+                       placeholder="🔍 Search by Case ID, title, category, location…" oninput="filterInvCases()">
+                <select id="invCasesStatus" class="form-select" style="font-size: 13px;" onchange="filterInvCases()">
+                  <option value="all">All Statuses</option>
+                  <option value="open">Open</option>
+                  <option value="under_investigation">Under Investigation</option>
+                  <option value="closed">Closed</option>
+                  <option value="pending">Pending</option>
+                </select>
+                <select id="invCasesPriority" class="form-select" style="font-size: 13px;" onchange="filterInvCases()">
+                  <option value="all">All Priorities</option>
+                  <option value="critical">Critical</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="card" style="overflow-x:auto; padding: 0;">
+              <table style="width:100%; border-collapse:collapse; font-size:13px;">
+                <thead>
+                  <tr style="background: var(--ci-card-sub); border-bottom: 2px solid var(--ci-border);">
+                    <th style="padding:10px 12px; text-align:left; color:var(--ci-navy); font-weight:700;">Case ID</th>
+                    <th style="padding:10px 12px; text-align:left; color:var(--ci-navy); font-weight:700;">Title</th>
+                    <th style="padding:10px 12px; text-align:left; color:var(--ci-navy); font-weight:700;">Type</th>
+                    <th style="padding:10px 12px; text-align:left; color:var(--ci-navy); font-weight:700;">Location</th>
+                    <th style="padding:10px 12px; text-align:left; color:var(--ci-navy); font-weight:700;">Status</th>
+                    <th style="padding:10px 12px; text-align:left; color:var(--ci-navy); font-weight:700;">Priority</th>
+                    <th style="padding:10px 12px; text-align:left; color:var(--ci-navy); font-weight:700;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="invCasesTableBody">
+                  <tr><td colspan="7" style="padding:40px; text-align:center; color:var(--ci-text-muted);">Loading cases…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: INVESTIGATOR MY AREA MAP
+        <!-- ============================================================
+             TAB: INVESTIGATOR MY AREA MAP
+             ============================================================ -->
+        <section id="tab-inv-map" class="tab-content hidden">
+          <div style="display:grid; grid-template-columns: 1fr 280px; gap:16px; height: calc(100vh - 195px); min-height: 540px;">
+
+            <!-- Map Column -->
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <!-- Filter bar -->
+              <div class="card" style="padding:10px 14px;">
+                <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                  <input id="invMapSearch" type="text" class="form-input" style="flex:1; min-width:180px; font-size:13px;"
+                         placeholder="🔍 Search by case, location…" oninput="loadInvMap()">
+                  <select id="invMapTypeFilter" class="form-select" style="font-size:13px;" onchange="loadInvMap()">
+                    <option value="all">All Types</option>
+                    <option value="robbery">Robbery</option>
+                    <option value="theft">Theft</option>
+                    <option value="fraud">Fraud</option>
+                    <option value="assault">Assault</option>
+                    <option value="smuggling">Smuggling</option>
+                    <option value="drug_trafficking">Drug Trafficking</option>
+                    <option value="murder">Murder</option>
+                    <option value="kidnapping">Kidnapping</option>
+                  </select>
+                  <select id="invMapStatusFilter" class="form-select" style="font-size:13px;" onchange="loadInvMap()">
+                    <option value="all">All Statuses</option>
+                    <option value="open">Open</option>
+                    <option value="under_investigation">Under Investigation</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                  <div class="segmented-group">
+                    <button id="invMapModePoints" onclick="setInvMapMode('points')" class="seg-btn active" style="font-size:12px;">📍 Points</button>
+                    <button id="invMapModeHeat" onclick="setInvMapMode('heat')" class="seg-btn" style="font-size:12px;">🔥 Heat</button>
+                  </div>
+                  <button onclick="loadInvMap()" class="btn btn-secondary btn-sm">↺ Refresh</button>
+                  <span id="invMapMarkerCount" class="badge badge-teal" style="white-space:nowrap;">0 Incidents</span>
+                </div>
+              </div>
+              <!-- Map canvas -->
+              <div class="card" style="flex:1; padding:0; overflow:hidden; min-height:440px;">
+                <div id="invMapCanvas" style="height:100%; width:100%; min-height:440px;"></div>
+              </div>
+            </div>
+
+            <!-- Detail Sidebar -->
+            <div style="display:flex; flex-direction:column; gap:12px; overflow-y:auto;">
+              <div class="card" style="padding:14px;">
+                <div style="font-size:12px; font-weight:800; color:var(--ci-navy); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:10px;">📍 Selected Incident</div>
+                <div id="invMapDetailPanel" style="font-size:12.5px; color:var(--ci-text-muted);">
+                  Click a marker on the map to view incident details.
+                </div>
+              </div>
+              <div class="card" style="padding:14px;">
+                <div style="font-size:12px; font-weight:800; color:var(--ci-navy); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:10px;">🗺️ Legend</div>
+                <div id="invMapLegend" style="font-size:12px; display:flex; flex-direction:column; gap:6px;"></div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: CASE TIMELINE (MULTI-CASE CHRONOLOGY & AUDIT TRAIL)
+             ============================================================ -->
+        <section id="tab-timeline" class="tab-content hidden">
+          <div class="card space-y-4">
+            <div class="card-header flex-wrap gap-2">
+              <div>
+                <span class="card-title"><span>⏱️</span> Multi-Case Evidence Rail & Audit Timeline</span>
+                <p style="font-size: 12px; color: var(--ci-text-muted); margin-top: 2px;">
+                  Analyze chronological activity across one or multiple linked cases with verifiable audit entry records and activity gap detection.
+                </p>
+              </div>
+
+              <!-- Multi-Case Selection Bar -->
+              <div class="flex items-center gap-2 flex-wrap">
+                <span style="font-size: 12.5px; font-weight: 700; color: var(--ci-navy);">Primary Case:</span>
+                <select id="timelinePrimaryCaseSelect" onchange="handleTimelineCaseChange()" class="form-select" style="font-size: 12.5px; padding: 4px 8px;"></select>
+                
+                <span style="font-size: 12.5px; font-weight: 700; color: var(--ci-teal);">Compare With:</span>
+                <select id="timelineSecondaryCaseSelect" onchange="handleTimelineCaseChange()" class="form-select" style="font-size: 12.5px; padding: 4px 8px;">
+                  <option value="">None (Single Case)</option>
+                </select>
+
+                <div class="segmented-group">
+                  <button id="timelineViewCombinedBtn" onclick="setTimelineViewMode('combined')" class="seg-btn active">Combined Rail</button>
+                  <button id="timelineViewSeparateBtn" onclick="setTimelineViewMode('separate')" class="seg-btn">Side-by-Side</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Explainer Notice: Dual-Date Audit Integrity & Activity Gaps -->
+            <div class="card-sub" style="border-left: 4px solid var(--ci-teal); background: var(--ci-teal-soft); font-size: 12px; line-height: 1.5; color: var(--ci-navy);">
+              <div class="flex gap-2 items-start">
+                <span style="font-size: 16px;">📜</span>
+                <div>
+                  <strong>Audit Distinction & Activity Gap Policy:</strong><br>
+                  • <strong>Event Date vs. Entry Date:</strong> The timeline strictly distinguishes when an event historically occurred from when the desk officer documented it. Post-facto record edits never imply the historical event itself changed.<br>
+                  • <strong>Activity Gaps:</strong> Inactivity windows (>25 days) are explicitly surfaced without interpreting missing data as proof that no criminal conduct occurred.
+                </div>
+              </div>
+            </div>
+
+            <!-- Filters Bar: Event Type & Date Range -->
+            <div class="flex items-center justify-between flex-wrap gap-2 pt-1 pb-1" style="border-bottom: 1px solid var(--ci-border);">
+              <div class="segmented-group">
+                <button onclick="filterTimeline('all')" class="seg-btn timeline-filter-btn active">All Events</button>
+                <button onclick="filterTimeline('incident')" class="seg-btn timeline-filter-btn">🚨 Incidents</button>
+                <button onclick="filterTimeline('surveillance')" class="seg-btn timeline-filter-btn">👁️ Surveillance</button>
+                <button onclick="filterTimeline('vehicle_sighting')" class="seg-btn timeline-filter-btn">🚗 Vehicle Sightings</button>
+                <button onclick="filterTimeline('call')" class="seg-btn timeline-filter-btn">📞 Call Summaries</button>
+                <button onclick="filterTimeline('meeting')" class="seg-btn timeline-filter-btn">🤝 Meetings</button>
+                <button onclick="filterTimeline('witness')" class="seg-btn timeline-filter-btn">📝 Statements</button>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <input id="timelineStartDate" type="date" class="form-input" style="font-size: 12px; padding: 3px 6px;" title="Start Date Filter" onchange="loadMultiTimeline()">
+                <span style="font-size: 12px; color: var(--ci-text-muted);">to</span>
+                <input id="timelineEndDate" type="date" class="form-input" style="font-size: 12px; padding: 3px 6px;" title="End Date Filter" onchange="loadMultiTimeline()">
+                <button onclick="loadMultiTimeline()" class="btn btn-secondary btn-sm">↺ Filter</button>
+              </div>
+            </div>
+
+            <div id="timelineEventsContainer" style="padding: 10px 0;"></div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: ASK THE EVIDENCE (AI RAG ASSISTANT)
+             ============================================================ -->
+        <section id="tab-assistant" class="tab-content hidden">
+          <div class="grid" style="grid-template-columns: 1fr 320px; gap: 16px; height: calc(100vh - 195px); min-height: 520px;">
+            
+            <div class="card flex flex-col justify-between" style="padding: 0; overflow: hidden;">
+              <div class="card-header" style="margin: 0; padding: 12px 18px; background: var(--ci-card-sub);">
+                <span class="card-title"><span>🤖</span> Grounded Evidence Assistant (RAG)</span>
+                <div class="flex items-center gap-2">
+                  <button onclick="generateChargesheetModal()" class="btn btn-secondary btn-sm" style="background: #ffffff; border: 1px solid var(--ci-border); font-weight: 600; font-size: 11.5px; padding: 4px 10px; color: var(--ci-teal-dark);">📝 Draft Chargesheet</button>
+                  <span class="badge badge-teal">Evidence Citation Strict</span>
+                </div>
+              </div>
+
+              <div id="chatHistory" class="flex-1 overflow-y-auto p-4 flex flex-col gap-3" style="padding: 16px;">
+                <div class="flex gap-2">
+                  <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--ci-teal); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px; flex-shrink: 0;">
+                    AI
+                  </div>
+                  <div class="card-sub p-3" style="max-width: 85%;">
+                    <p style="font-size: 13px; line-height: 1.5;">
+                      Hello Investigator. I am CrimeIntel’s Evidence Synthesis Assistant. You can ask me questions about suspects, phone overlaps, bridge brokers, or cross-case connections. Every answer is strictly grounded in verified database citations.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="border-top: 1px solid var(--ci-border); padding: 12px 16px; background: var(--ci-card-bg); display: flex; flex-direction: column; gap: 8px;">
+                <div class="flex items-center gap-2">
+                  <input id="assistantInput" type="text" class="form-input flex-1" placeholder="Ask an investigative question (e.g. Which vehicles appear in Case C001?)..." onkeydown="if(event.key==='Enter') sendAssistantQuery()">
+                  <button onclick="sendAssistantQuery()" class="btn btn-primary">
+                    <span>Send Query</span>
+                  </button>
+                </div>
+                <div style="font-size: 11px; color: var(--ci-text-muted); display: flex; justify-content: space-between;">
+                  <span>Accepts free-form questions regarding suspects, vehicles, telecom logs, or case links.</span>
+                  <span>Strict Evidence Grounding Active</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card flex flex-col">
+              <div class="card-header">
+                <span class="card-title"><span>📚</span> Verified Citations</span>
+              </div>
+              <div id="sourcesContainer" class="flex-1 overflow-y-auto" style="font-size: 12.5px;">
+                <div style="color: var(--ci-text-muted); text-align: center; padding: 40px 10px;">
+                  No query executed yet. Verified case, document, and relationship references will appear here with clickable inspect links.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB: HUMAN VALIDATION QUEUE & AUDIT TRAIL
+             ============================================================ -->
+        <section id="tab-validations" class="tab-content hidden">
+          <div class="grid" style="grid-template-columns: 1fr 380px; gap: 16px;">
+            
+            <div class="card space-y-3">
+              <div class="card-header">
+                <div>
+                  <span class="card-title"><span>🛡️</span> AI-Suggested Relationships (Review Queue)</span>
+                  <p style="font-size: 12.5px; color: var(--ci-text-muted); margin-top: 2px;">
+                    Investigator verification required before links are marked official in prosecution files.
+                  </p>
+                </div>
+                <button onclick="loadPendingValidations()" class="btn btn-secondary btn-sm">
+                  <span>↺</span> Refresh
+                </button>
+              </div>
+
+              <div id="pendingValidationsTable" class="flex flex-col gap-3"></div>
+            </div>
+
+            <div class="card space-y-3">
+              <div class="card-header">
+                <span class="card-title"><span>📜</span> Immutable Audit Log</span>
+                <button onclick="loadAuditTrail()" class="btn btn-secondary btn-sm">
+                  <span>↺</span>
+                </button>
+              </div>
+
+              <p style="font-size: 12px; color: var(--ci-text-muted);">
+                Every approve, reject, and note submission is tracked with timestamp and reviewer role.
+              </p>
+
+              <div id="auditLogStream" class="flex flex-col gap-2 overflow-y-auto" style="max-height: 520px;"></div>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL: REGISTER NEW FIR (WORKFLOW 1)
+       ============================================================ -->
+  <div id="registerFirModal" class="modal-overlay hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <span style="font-size: 20px;">📑</span>
+          <div>
+            <span style="font-weight: 700; font-size: 15px; color: var(--ci-navy);">Initial FIR Registration (Workflow 1)</span>
+            <div class="badge badge-teal" style="font-size: 10px; margin-left: 6px;">IMMUTABLE OFFICIAL RECORD</div>
+          </div>
+        </div>
+        <button onclick="closeRegisterFirModal()" class="btn btn-secondary btn-sm" style="padding: 2px 8px;">✕</button>
+      </div>
+
+      <form id="registerFirForm" onsubmit="handleRegisterFirSubmit(event)" class="modal-body flex flex-col gap-3">
+        <div class="card-sub" style="font-size: 12px; color: var(--ci-text-muted);">
+          ℹ️ <strong>Legal Preservation Notice:</strong> Once an FIR is registered, the original submission is permanently archived. Any future corrections must be authorized as an official audit amendment.
+        </div>
+
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="login-field">
+            <label>Case / Incident Title *</label>
+            <input id="firTitle" type="text" class="form-input" placeholder="e.g. Warehouse Robbery on Bypass" required>
+          </div>
+          <div class="login-field">
+            <label>Crime Category *</label>
+            <select id="firCaseType" class="form-select" required>
+              <option value="property">Property Theft / Burglary</option>
+              <option value="vehicle">Vehicle Hijack / Theft</option>
+              <option value="robbery">Armed Highway Robbery</option>
+              <option value="fraud">Commercial Cargo Fraud</option>
+              <option value="organized_crime">Extortion Syndicate</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+          <div class="login-field">
+            <label>Police Station *</label>
+            <select id="firPoliceStation" class="form-select" required>
+              <option value="Satara Police Station">Satara Police Station</option>
+              <option value="Pune Police Station">Pune Police Station</option>
+              <option value="Pimpri-Chinchwad Police Station">Pimpri-Chinchwad Police Station</option>
+              <option value="Nashik Police Station">Nashik Police Station</option>
+              <option value="Thane Police Station">Thane Police Station</option>
+            </select>
+          </div>
+          <div class="login-field">
+            <label>District / City *</label>
+            <select id="firCity" class="form-select" required>
+              <option value="Pune">Pune</option>
+              <option value="Satara">Satara</option>
+              <option value="Pimpri-Chinchwad">Pimpri-Chinchwad</option>
+              <option value="Nashik">Nashik</option>
+              <option value="Thane">Thane</option>
+            </select>
+          </div>
+          <div class="login-field">
+            <label>Priority *</label>
+            <select id="firPriority" class="form-select" required>
+              <option value="critical">Critical</option>
+              <option value="high" selected>High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="login-field">
+            <label>Incident Date</label>
+            <input id="firDate" type="date" class="form-input" value="2026-03-12">
+          </div>
+          <div class="login-field">
+            <label>MO Code</label>
+            <input id="firMoCode" type="text" class="form-input" placeholder="e.g. route_diversion, shutter_bypass" value="highway_intercept">
+          </div>
+        </div>
+
+        <div class="login-field">
+          <label>Complainant / Reporting Officer</label>
+          <input id="firComplainant" type="text" class="form-input" placeholder="Name and designation">
+        </div>
+
+        <div class="login-field">
+          <label>Executive Incident Summary *</label>
+          <input id="firSummary" type="text" class="form-input" placeholder="Concise one-line incident description" required>
+        </div>
+
+        <div class="login-field">
+          <label>Detailed Incident Narrative / FIR Content</label>
+          <textarea id="firNarrative" rows="4" class="form-input" placeholder="Full recorded facts of the offense..."></textarea>
+        </div>
+
+        <div class="modal-footer" style="padding: 10px 0 0; background: transparent; border-top: 1px solid var(--ci-border);">
+          <button type="button" onclick="closeRegisterFirModal()" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">✓ Register Official FIR</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL: ADD INVESTIGATION EVIDENCE (WORKFLOW 2)
+       ============================================================ -->
+  <div id="addEvidenceModal" class="modal-overlay hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <span style="font-size: 20px;">📎</span>
+          <div>
+            <span style="font-weight: 700; font-size: 15px; color: var(--ci-navy);">Add Investigation Evidence (Workflow 2)</span>
+            <div class="badge badge-teal" style="font-size: 10px; margin-left: 6px;">POST-FIR ATTACHMENT</div>
+          </div>
+        </div>
+        <button onclick="closeAddEvidenceModal()" class="btn btn-secondary btn-sm" style="padding: 2px 8px;">✕</button>
+      </div>
+
+      <form id="addEvidenceForm" onsubmit="handleAddEvidenceSubmit(event)" class="modal-body flex flex-col gap-3">
+        <div class="card-sub" style="font-size: 12px; color: var(--ci-text-muted);">
+          Attach subsequent investigative findings to the active case without modifying or re-registering the original FIR.
+        </div>
+
+        <div class="login-field">
+          <label>Target Case *</label>
+          <select id="evidenceTargetCase" class="form-select" required></select>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="login-field">
+            <label>Evidence Category *</label>
+            <select id="evidenceCategory" class="form-select" required>
+              <option value="witness_statement">Witness Deposition / Statement</option>
+              <option value="cdr_summary">Call Detail Record (CDR) Summary</option>
+              <option value="surveillance_report">Physical Surveillance Log</option>
+              <option value="vehicle_sighting">ANPR / Vehicle Sighting Memo</option>
+              <option value="seizure_memo">Recovery & Seizure Panchanama</option>
+              <option value="forensic_report">Forensic / Ballistics Analysis</option>
+            </select>
+          </div>
+          <div class="login-field">
+            <label>Evidence Document Title *</label>
+            <input id="evidenceTitle" type="text" class="form-input" placeholder="e.g. Witness Statement of Truck Driver" required>
+          </div>
+        </div>
+
+        <div class="login-field">
+          <label>Source / Agency</label>
+          <input id="evidenceSource" type="text" class="form-input" placeholder="e.g. Highway Patrol Unit, Cyber Crime Lab">
+        </div>
+
+        <div class="login-field">
+          <label>Evidence Narrative / Extracted Transcript *</label>
+          <textarea id="evidenceNarrative" rows="5" class="form-input" placeholder="Enter witness testimony, CDR phone hits, vehicle registration numbers, or recovery details..." required></textarea>
+        </div>
+
+        <div class="modal-footer" style="padding: 10px 0 0; background: transparent; border-top: 1px solid var(--ci-border);">
+          <button type="button" onclick="closeAddEvidenceModal()" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">✓ Link Evidence to Case</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- EVIDENCE DETAILS DRAWER (OFF-CANVAS) -->
+  <aside id="evidenceDrawer" class="evidence-drawer translate-x-full">
+    <div class="drawer-header">
+      <div class="flex items-center gap-2">
+        <span style="font-size: 18px;">📋</span>
+        <span style="font-weight: 700; font-size: 14px; color: var(--ci-navy);">Evidence Grounding Detail</span>
+      </div>
+      <button onclick="closeEvidenceDrawer()" class="btn btn-secondary btn-sm" style="padding: 2px 8px;">✕</button>
+    </div>
+
+    <div id="drawerBody" class="drawer-body"></div>
+    <div id="drawerFooterActions" class="drawer-footer"></div>
+  </aside>
+
+  <!-- ============================================================
+       MODAL: AUTHORIZED SYSTEM ALERTS (ITEM 19)
+       ============================================================ -->
+  <div id="alertsModal" class="modal-overlay hidden">
+    <div class="modal-dialog" style="max-width: 820px; width: 92%;">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <span style="font-size: 20px;">🔔</span>
+          <div>
+            <span style="font-weight: 700; font-size: 15px; color: var(--ci-navy);">Authorized System Alerts</span>
+            <div class="badge badge-teal" style="font-size: 10px; margin-left: 6px;">JURISDICTION & CASE CROSS-CUTTING</div>
+          </div>
+        </div>
+        <button onclick="closeAlertsModal()" class="btn btn-secondary btn-sm" style="padding: 2px 8px;">✕</button>
+      </div>
+
+      <div class="modal-body space-y-3">
+        <!-- Filter Bar -->
+        <div class="flex items-center justify-between flex-wrap gap-2 pb-2" style="border-bottom: 1px solid var(--ci-border);">
+          <div class="flex items-center gap-2">
+            <label style="font-size: 11.5px; font-weight: 700; color: var(--ci-text-muted);">Severity:</label>
+            <select id="alertFilterSeverity" onchange="filterAlertsDisplay()" class="form-select" style="font-size: 12px; padding: 3px 6px;">
+              <option value="all">All Severities</option>
+              <option value="critical">🚨 Critical</option>
+              <option value="high">⚠️ High</option>
+              <option value="medium">ℹ️ Medium</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <label style="font-size: 11.5px; font-weight: 700; color: var(--ci-text-muted);">Alert Type:</label>
+            <select id="alertFilterType" onchange="filterAlertsDisplay()" class="form-select" style="font-size: 12px; padding: 3px 6px;">
+              <option value="all">All Types</option>
+              <option value="new_cross_case_link">Cross-Case Links</option>
+              <option value="missing_update">Missing Updates / Evidence</option>
+              <option value="aging_case">Aging Cases</option>
+              <option value="pending_validation">Pending Validation</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <label style="font-size: 11.5px; font-weight: 700; color: var(--ci-text-muted);">Status:</label>
+            <select id="alertFilterStatus" onchange="filterAlertsDisplay()" class="form-select" style="font-size: 12px; padding: 3px 6px;">
+              <option value="all">All Statuses</option>
+              <option value="open">Open</option>
+              <option value="in_review">In Review</option>
+              <option value="dismissed">Dismissed</option>
+            </select>
+          </div>
+
+          <button onclick="loadAuthorizedAlerts()" class="btn btn-secondary btn-sm" style="font-size: 11px;">↺ Refresh</button>
+        </div>
+
+        <!-- Alerts Table Container -->
+        <div id="alertsListContainer" style="max-height: 400px; overflow-y: auto;">
+          <div class="text-center py-6" style="color: var(--ci-text-muted);">Loading alerts...</div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <span style="font-size: 11.5px; color: var(--ci-text-muted);">
+          Alerts reflect audit triggers across your authorized police jurisdiction.
+        </span>
+        <button onclick="closeAlertsModal()" class="btn btn-secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL: STATISTICAL ANOMALY INSPECTOR (ITEM 20)
+       ============================================================ -->
+  <div id="anomalyModal" class="modal-overlay hidden">
+    <div class="modal-dialog" style="max-width: 760px; width: 90%;">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <span style="font-size: 20px;">⚡</span>
+          <div>
+            <span style="font-weight: 700; font-size: 15px; color: var(--ci-navy);">Anomaly Detection Inspector</span>
+            <div class="badge badge-amber" style="font-size: 10px; margin-left: 6px;">STATISTICAL PATTERN SIGNAL</div>
+          </div>
+        </div>
+        <button onclick="closeAnomalyModal()" class="btn btn-secondary btn-sm" style="padding: 2px 8px;">✕</button>
+      </div>
+
+      <div class="modal-body space-y-3">
+        <!-- Prototype Demo Signal Banner -->
+        <div class="card-sub p-2.5 flex items-center gap-2" style="background: rgba(178, 116, 24, 0.1); border-left: 3px solid var(--ci-warning);">
+          <span style="font-size: 16px;">🔬</span>
+          <span style="font-size: 11.5px; color: var(--ci-warning); font-weight: 600;">
+            PROTOTYPE DEMO SIGNAL: Seeded synthetic anomaly signal demonstrating automated detector workflow. Analyst verification mandatory.
+          </span>
+        </div>
+
+        <div id="anomalyModalContent" class="space-y-3" style="font-size: 12.5px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <span id="anomalyReviewStatusNote" style="font-size: 11.5px; color: var(--ci-text-muted);"></span>
+        <div class="flex items-center gap-2">
+          <button onclick="updateActiveAnomalyStatus('acknowledged')" class="btn btn-primary btn-sm">✓ Acknowledge Signal</button>
+          <button onclick="updateActiveAnomalyStatus('false_positive')" class="btn btn-secondary btn-sm" style="color: var(--ci-danger);">✕ Mark False Positive</button>
+          <button onclick="closeAnomalyModal()" class="btn btn-secondary btn-sm">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL: CHARGESHEET DRAFT WITH INSPECTABLE GROUNDING (ITEM 18)
+       ============================================================ -->
+  <div id="chargesheetModal" class="modal-overlay hidden">
+    <div class="modal-dialog" style="max-width: 880px; width: 92%;">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <span style="font-size: 20px;">📝</span>
+          <div>
+            <span style="font-weight: 700; font-size: 15px; color: var(--ci-navy);">AI-Assisted Investigation / Chargesheet Draft</span>
+            <div class="badge badge-warning" style="font-size: 10px; margin-left: 6px;">MANDATORY INVESTIGATOR & LEGAL REVIEW</div>
+          </div>
+        </div>
+        <button onclick="closeChargesheetModal()" class="btn btn-secondary btn-sm" style="padding: 2px 8px;">✕</button>
+      </div>
+
+      <div class="modal-body space-y-3" style="max-height: 70vh; overflow-y: auto;">
+        <!-- Mandatory Notice -->
+        <div class="card-sub p-2.5" style="border-left: 3px solid var(--ci-danger); font-size: 12px; color: var(--ci-danger); font-weight: 600;">
+          ⚠️ AI-Assisted Draft: Strictly grounded in verified repository records. The system does not invent facts to fill missing sections. Official prosecution submission requires full investigator verification.
+        </div>
+
+        <!-- Generated Draft Text -->
+        <div class="card p-3 space-y-2">
+          <div class="flex items-center justify-between pb-1" style="border-bottom: 1px solid var(--ci-border);">
+            <strong style="font-size: 13px; color: var(--ci-navy);">Generated Draft Text</strong>
+            <button onclick="copyDraftToClipboard()" class="btn btn-secondary btn-sm" style="font-size: 11px;">📋 Copy Draft Text</button>
+          </div>
+          <div id="draftContent" class="mono" style="font-size: 12px; background: var(--ci-card-sub); padding: 12px; border-radius: 6px; white-space: pre-wrap; line-height: 1.5; max-height: 240px; overflow-y: auto;">
+            Generating evidence-grounded draft...
+          </div>
+        </div>
+
+        <!-- Expandable Grounding & Evidence Used Inspector (Item 18) -->
+        <div class="card p-3 space-y-2">
+          <button onclick="toggleGroundingAccordion()" class="w-full flex items-center justify-between" style="background: none; border: none; cursor: pointer; text-align: left; padding: 2px 0;">
+            <div class="flex items-center gap-2">
+              <span style="font-size: 15px;">🔍</span>
+              <strong style="font-size: 13px; color: var(--ci-teal-dark);">Sources and Evidence Used (Grounding Inspector)</strong>
+              <span class="badge badge-teal" style="font-size: 9.5px;">INSPECTABLE RECORD PROVENANCE</span>
+            </div>
+            <span id="groundingAccordionIcon" style="font-size: 12px; font-weight: 700; color: var(--ci-text-muted);">▼ Click to Inspect Sources</span>
+          </button>
+
+          <div id="groundingInspectorBody" class="space-y-3 pt-2" style="border-top: 1px solid var(--ci-border);">
+            <!-- Populated dynamically with supplied records, approved evidence, source doc refs, unverified facts, missing info -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <span style="font-size: 11.5px; color: var(--ci-text-muted);">
+          Evidence-grounded synthesis • Synthetic CrimeIntel DB
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="copyDraftToClipboard()" class="btn btn-secondary">Copy Text</button>
+          <button onclick="closeChargesheetModal()" class="btn btn-primary">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>

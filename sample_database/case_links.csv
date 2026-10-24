@@ -1,0 +1,16 @@
+link_id,case_a,case_b,shared_entities,mo_similarity,temporal_proximity_days,spatial_proximity_km,semantic_similarity,overall_confidence,status
+R0140,C003,C004,1,0.88,78,65.3,0.64,0.82,ai_suggested
+R0141,C006,C007,2,0.63,48,35.0,0.74,0.75,ai_suggested
+R0142,C009,C010,0,0.9,33,13.6,0.64,0.7,ai_suggested
+R0143,C012,C013,0,0.95,97,10.5,0.93,0.84,ai_suggested
+R0144,C015,C016,0,0.79,51,24.6,0.63,0.73,ai_suggested
+R0145,C016,C017,2,0.68,62,71.2,0.8,0.77,ai_suggested
+R0146,C018,C019,3,0.55,63,74.1,0.88,0.73,ai_suggested
+R0147,C021,C022,0,0.89,44,8.3,0.79,0.63,ai_suggested
+R0148,C024,C025,2,0.64,26,1.6,0.94,0.75,ai_suggested
+R0149,C027,C028,1,0.72,31,77.4,0.89,0.8,ai_suggested
+R0150,C001,C013,1,0.6,29,9.3,0.91,0.87,ai_suggested
+R0151,C005,C021,0,0.77,47,8.0,0.83,0.88,ai_suggested
+R0152,C007,C022,1,0.92,37,70.0,0.69,0.88,ai_suggested
+R0153,C012,C029,0,0.91,25,35.6,0.8,0.8,ai_suggested
+R0154,C016,C030,1,0.6,93,27.1,0.71,0.9,ai_suggested

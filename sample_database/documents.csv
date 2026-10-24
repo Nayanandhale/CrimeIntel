@@ -1,0 +1,91 @@
+document_id,case_id,document_type,title,file_name,source_type,created_at,ocr_status,classification
+DOC001,C021,witness_statement,C021 FIR 1,C021_1.txt,FIR,2025-12-13,ocr_verified,RESTRICTED-DEMO
+DOC002,C030,chargesheet_draft,C030 Surveillance Note 2,C030_2.txt,intelligence,2025-08-09,native_text,RESTRICTED-DEMO
+DOC003,C027,chargesheet_draft,C027 FIR 3,C027_3.txt,witness_statement,2025-10-13,native_text,RESTRICTED-DEMO
+DOC004,C019,FIR,C019 Vehicle Report 4,C019_4.txt,police_report,2025-06-15,native_text,RESTRICTED-DEMO
+DOC005,C014,vehicle_report,C014 FIR 5,C014_5.txt,witness_statement,2025-05-13,native_text,RESTRICTED-DEMO
+DOC006,C011,vehicle_report,C011 CDR Extract 6,C011_6.txt,intelligence,2025-02-19,native_text,RESTRICTED-DEMO
+DOC007,C021,CDR_summary,C021 Surveillance Note 7,C021_7.txt,FIR,2025-12-13,native_text,RESTRICTED-DEMO
+DOC008,C028,vehicle_report,C028 Surveillance Note 8,C028_8.txt,CDR,2025-05-08,native_text,RESTRICTED-DEMO
+DOC009,C012,vehicle_report,C012 FIR 9,C012_9.txt,police_report,2025-08-24,ocr_verified,RESTRICTED-DEMO
+DOC010,C012,witness_statement,C012 Surveillance Note 10,C012_10.txt,police_report,2025-08-24,native_text,RESTRICTED-DEMO
+DOC011,C015,vehicle_report,C015 Statement 11,C015_11.txt,witness_statement,2025-07-19,native_text,RESTRICTED-DEMO
+DOC012,C005,intelligence_note,C005 Statement 12,C005_12.txt,witness_statement,2025-11-10,native_text,RESTRICTED-DEMO
+DOC013,C022,intelligence_note,C022 FIR 13,C022_13.txt,FIR,2025-04-25,native_text,RESTRICTED-DEMO
+DOC014,C030,chargesheet_draft,C030 Vehicle Report 14,C030_14.txt,CDR,2025-08-09,ocr_verified,RESTRICTED-DEMO
+DOC015,C015,surveillance_report,C015 CDR Extract 15,C015_15.txt,police_report,2025-07-19,native_text,RESTRICTED-DEMO
+DOC016,C028,CDR_summary,C028 CDR Extract 16,C028_16.txt,intelligence,2025-05-08,native_text,RESTRICTED-DEMO
+DOC017,C030,CDR_summary,C030 FIR 17,C030_17.txt,police_report,2025-08-09,ocr_verified,RESTRICTED-DEMO
+DOC018,C023,FIR,C023 FIR 18,C023_18.txt,witness_statement,2025-01-14,ocr_verified,RESTRICTED-DEMO
+DOC019,C019,surveillance_report,C019 CDR Extract 19,C019_19.txt,surveillance,2025-06-15,native_text,RESTRICTED-DEMO
+DOC020,C014,witness_statement,C014 Statement 20,C014_20.txt,surveillance,2025-05-13,native_text,RESTRICTED-DEMO
+DOC021,C008,intelligence_note,C008 CDR Extract 21,C008_21.txt,FIR,2025-07-06,ocr_verified,RESTRICTED-DEMO
+DOC022,C021,surveillance_report,C021 CDR Extract 22,C021_22.txt,police_report,2025-12-13,ocr_verified,RESTRICTED-DEMO
+DOC023,C023,surveillance_report,C023 Vehicle Report 23,C023_23.txt,intelligence,2025-01-14,native_text,RESTRICTED-DEMO
+DOC024,C003,vehicle_report,C003 Surveillance Note 24,C003_24.txt,CDR,2025-09-11,ocr_verified,RESTRICTED-DEMO
+DOC025,C009,CDR_summary,C009 Statement 25,C009_25.txt,FIR,2025-09-23,ocr_verified,RESTRICTED-DEMO
+DOC026,C005,surveillance_report,C005 Surveillance Note 26,C005_26.txt,intelligence,2025-11-10,ocr_verified,RESTRICTED-DEMO
+DOC027,C001,intelligence_note,C001 Surveillance Note 27,C001_27.txt,witness_statement,2025-10-06,ocr_verified,RESTRICTED-DEMO
+DOC028,C019,surveillance_report,C019 CDR Extract 28,C019_28.txt,witness_statement,2025-06-15,native_text,RESTRICTED-DEMO
+DOC029,C022,vehicle_report,C022 Statement 29,C022_29.txt,witness_statement,2025-04-25,ocr_verified,RESTRICTED-DEMO
+DOC030,C001,intelligence_note,C001 Vehicle Report 30,C001_30.txt,CDR,2025-10-06,ocr_verified,RESTRICTED-DEMO
+DOC031,C022,intelligence_note,C022 Statement 31,C022_31.txt,surveillance,2025-04-25,ocr_verified,RESTRICTED-DEMO
+DOC032,C027,witness_statement,C027 Surveillance Note 32,C027_32.txt,CDR,2025-10-13,native_text,RESTRICTED-DEMO
+DOC033,C008,vehicle_report,C008 Vehicle Report 33,C008_33.txt,intelligence,2025-07-06,native_text,RESTRICTED-DEMO
+DOC034,C001,chargesheet_draft,C001 Surveillance Note 34,C001_34.txt,CDR,2025-10-06,native_text,RESTRICTED-DEMO
+DOC035,C017,vehicle_report,C017 FIR 35,C017_35.txt,witness_statement,2025-10-21,native_text,RESTRICTED-DEMO
+DOC036,C003,vehicle_report,C003 FIR 36,C003_36.txt,CDR,2025-09-11,ocr_verified,RESTRICTED-DEMO
+DOC037,C002,CDR_summary,C002 Statement 37,C002_37.txt,witness_statement,2025-01-21,ocr_verified,RESTRICTED-DEMO
+DOC038,C024,vehicle_report,C024 Statement 38,C024_38.txt,witness_statement,2025-09-13,native_text,RESTRICTED-DEMO
+DOC039,C003,surveillance_report,C003 Surveillance Note 39,C003_39.txt,intelligence,2025-09-11,native_text,RESTRICTED-DEMO
+DOC040,C024,vehicle_report,C024 Statement 40,C024_40.txt,witness_statement,2025-09-13,native_text,RESTRICTED-DEMO
+DOC041,C010,CDR_summary,C010 Vehicle Report 41,C010_41.txt,intelligence,2025-05-12,native_text,RESTRICTED-DEMO
+DOC042,C007,surveillance_report,C007 CDR Extract 42,C007_42.txt,witness_statement,2025-02-20,ocr_verified,RESTRICTED-DEMO
+DOC043,C020,FIR,C020 Surveillance Note 43,C020_43.txt,police_report,2025-08-09,native_text,RESTRICTED-DEMO
+DOC044,C020,chargesheet_draft,C020 Surveillance Note 44,C020_44.txt,witness_statement,2025-08-09,native_text,RESTRICTED-DEMO
+DOC045,C017,FIR,C017 CDR Extract 45,C017_45.txt,CDR,2025-10-21,ocr_verified,RESTRICTED-DEMO
+DOC046,C016,chargesheet_draft,C016 CDR Extract 46,C016_46.txt,witness_statement,2025-12-22,native_text,RESTRICTED-DEMO
+DOC047,C025,surveillance_report,C025 CDR Extract 47,C025_47.txt,witness_statement,2025-11-17,ocr_verified,RESTRICTED-DEMO
+DOC048,C013,witness_statement,C013 Surveillance Note 48,C013_48.txt,witness_statement,2025-02-17,ocr_verified,RESTRICTED-DEMO
+DOC049,C015,CDR_summary,C015 Surveillance Note 49,C015_49.txt,intelligence,2025-07-19,native_text,RESTRICTED-DEMO
+DOC050,C030,intelligence_note,C030 Surveillance Note 50,C030_50.txt,CDR,2025-08-09,ocr_verified,RESTRICTED-DEMO
+DOC051,C029,surveillance_report,C029 Statement 51,C029_51.txt,intelligence,2025-04-04,native_text,RESTRICTED-DEMO
+DOC052,C018,CDR_summary,C018 Vehicle Report 52,C018_52.txt,CDR,2025-07-14,native_text,RESTRICTED-DEMO
+DOC053,C003,vehicle_report,C003 Surveillance Note 53,C003_53.txt,FIR,2025-09-11,native_text,RESTRICTED-DEMO
+DOC054,C028,chargesheet_draft,C028 CDR Extract 54,C028_54.txt,surveillance,2025-05-08,ocr_verified,RESTRICTED-DEMO
+DOC055,C004,surveillance_report,C004 Vehicle Report 55,C004_55.txt,surveillance,2025-03-16,ocr_verified,RESTRICTED-DEMO
+DOC056,C011,CDR_summary,C011 Surveillance Note 56,C011_56.txt,witness_statement,2025-02-19,native_text,RESTRICTED-DEMO
+DOC057,C018,surveillance_report,C018 Surveillance Note 57,C018_57.txt,FIR,2025-07-14,native_text,RESTRICTED-DEMO
+DOC058,C022,CDR_summary,C022 FIR 58,C022_58.txt,surveillance,2025-04-25,native_text,RESTRICTED-DEMO
+DOC059,C006,witness_statement,C006 CDR Extract 59,C006_59.txt,witness_statement,2025-06-02,native_text,RESTRICTED-DEMO
+DOC060,C028,witness_statement,C028 CDR Extract 60,C028_60.txt,FIR,2025-05-08,native_text,RESTRICTED-DEMO
+DOC061,C029,witness_statement,C029 Surveillance Note 61,C029_61.txt,witness_statement,2025-04-04,ocr_verified,RESTRICTED-DEMO
+DOC062,C010,vehicle_report,C010 FIR 62,C010_62.txt,surveillance,2025-05-12,ocr_verified,RESTRICTED-DEMO
+DOC063,C007,witness_statement,C007 Surveillance Note 63,C007_63.txt,CDR,2025-02-20,native_text,RESTRICTED-DEMO
+DOC064,C004,surveillance_report,C004 FIR 64,C004_64.txt,FIR,2025-03-16,native_text,RESTRICTED-DEMO
+DOC065,C023,chargesheet_draft,C023 FIR 65,C023_65.txt,CDR,2025-01-14,ocr_verified,RESTRICTED-DEMO
+DOC066,C009,chargesheet_draft,C009 FIR 66,C009_66.txt,surveillance,2025-09-23,native_text,RESTRICTED-DEMO
+DOC067,C014,vehicle_report,C014 Statement 67,C014_67.txt,police_report,2025-05-13,ocr_verified,RESTRICTED-DEMO
+DOC068,C016,surveillance_report,C016 Vehicle Report 68,C016_68.txt,witness_statement,2025-12-22,native_text,RESTRICTED-DEMO
+DOC069,C014,FIR,C014 Surveillance Note 69,C014_69.txt,FIR,2025-05-13,native_text,RESTRICTED-DEMO
+DOC070,C026,FIR,C026 Surveillance Note 70,C026_70.txt,FIR,2025-04-23,native_text,RESTRICTED-DEMO
+DOC071,C021,FIR,C021 Vehicle Report 71,C021_71.txt,surveillance,2025-12-13,native_text,RESTRICTED-DEMO
+DOC072,C003,CDR_summary,C003 Surveillance Note 72,C003_72.txt,police_report,2025-09-11,native_text,RESTRICTED-DEMO
+DOC073,C028,CDR_summary,C028 Surveillance Note 73,C028_73.txt,police_report,2025-05-08,native_text,RESTRICTED-DEMO
+DOC074,C023,intelligence_note,C023 Vehicle Report 74,C023_74.txt,witness_statement,2025-01-14,native_text,RESTRICTED-DEMO
+DOC075,C027,vehicle_report,C027 Statement 75,C027_75.txt,surveillance,2025-10-13,native_text,RESTRICTED-DEMO
+DOC076,C019,vehicle_report,C019 Surveillance Note 76,C019_76.txt,intelligence,2025-06-15,ocr_verified,RESTRICTED-DEMO
+DOC077,C021,surveillance_report,C021 CDR Extract 77,C021_77.txt,police_report,2025-12-13,native_text,RESTRICTED-DEMO
+DOC078,C028,CDR_summary,C028 FIR 78,C028_78.txt,FIR,2025-05-08,ocr_verified,RESTRICTED-DEMO
+DOC079,C007,CDR_summary,C007 CDR Extract 79,C007_79.txt,FIR,2025-02-20,native_text,RESTRICTED-DEMO
+DOC080,C015,surveillance_report,C015 Surveillance Note 80,C015_80.txt,FIR,2025-07-19,native_text,RESTRICTED-DEMO
+DOC081,C009,CDR_summary,C009 Vehicle Report 81,C009_81.txt,FIR,2025-09-23,native_text,RESTRICTED-DEMO
+DOC082,C030,witness_statement,C030 CDR Extract 82,C030_82.txt,intelligence,2025-08-09,native_text,RESTRICTED-DEMO
+DOC083,C005,vehicle_report,C005 Statement 83,C005_83.txt,intelligence,2025-11-10,native_text,RESTRICTED-DEMO
+DOC084,C012,CDR_summary,C012 Statement 84,C012_84.txt,FIR,2025-08-24,ocr_verified,RESTRICTED-DEMO
+DOC085,C027,surveillance_report,C027 Surveillance Note 85,C027_85.txt,surveillance,2025-10-13,native_text,RESTRICTED-DEMO
+DOC086,C022,chargesheet_draft,C022 FIR 86,C022_86.txt,CDR,2025-04-25,native_text,RESTRICTED-DEMO
+DOC087,C015,witness_statement,C015 Vehicle Report 87,C015_87.txt,surveillance,2025-07-19,native_text,RESTRICTED-DEMO
+DOC088,C005,chargesheet_draft,C005 Surveillance Note 88,C005_88.txt,surveillance,2025-11-10,native_text,RESTRICTED-DEMO
+DOC089,C014,surveillance_report,C014 Vehicle Report 89,C014_89.txt,police_report,2025-05-13,native_text,RESTRICTED-DEMO
+DOC090,C015,chargesheet_draft,C015 Surveillance Note 90,C015_90.txt,surveillance,2025-07-19,ocr_verified,RESTRICTED-DEMO

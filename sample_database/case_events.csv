@@ -1,0 +1,143 @@
+event_id,case_id,event_type,event_date,location_id,description
+E00101,C001,call,2025-10-06,L003,Observed movement near incident area
+E00102,C001,call,2025-10-10,L004,Observed movement near incident area
+E00103,C001,meeting,2025-10-16,L005,Vehicle sighting logged
+E00104,C001,transaction,2025-10-18,L006,Call activity detected
+E00105,C001,transaction,2025-10-14,L007,Vehicle sighting logged
+E00106,C001,call,2025-10-21,L008,Witness interview recorded
+E00201,C002,vehicle_sighting,2025-01-21,L005,Vehicle sighting logged
+E00202,C002,vehicle_sighting,2025-01-23,L006,Observed movement near incident area
+E00203,C002,transaction,2025-02-02,L007,Observed movement near incident area
+E00204,C002,vehicle_sighting,2025-02-02,L008,Vehicle sighting logged
+E00205,C002,incident,2025-02-06,L009,Call activity detected
+E00301,C003,incident,2025-09-11,L007,Surveillance observation recorded
+E00302,C003,incident,2025-09-15,L008,Call activity detected
+E00303,C003,vehicle_sighting,2025-09-23,L009,Call activity detected
+E00304,C003,surveillance,2025-09-20,L010,Witness interview recorded
+E00401,C004,incident,2025-03-16,L009,Witness interview recorded
+E00402,C004,meeting,2025-03-19,L010,Surveillance observation recorded
+E00403,C004,call,2025-03-18,L011,Related transaction noted
+E00404,C004,call,2025-03-25,L012,Vehicle sighting logged
+E00501,C005,incident,2025-11-10,L011,Vehicle sighting logged
+E00502,C005,vehicle_sighting,2025-11-12,L012,Vehicle sighting logged
+E00503,C005,transaction,2025-11-14,L013,Witness interview recorded
+E00504,C005,vehicle_sighting,2025-11-19,L014,Related transaction noted
+E00505,C005,transaction,2025-11-14,L015,Related transaction noted
+E00601,C006,vehicle_sighting,2025-06-02,L013,Related transaction noted
+E00602,C006,call,2025-06-06,L014,Related transaction noted
+E00603,C006,vehicle_sighting,2025-06-06,L015,Vehicle sighting logged
+E00604,C006,call,2025-06-14,L016,Witness interview recorded
+E00701,C007,meeting,2025-02-20,L015,Witness interview recorded
+E00702,C007,vehicle_sighting,2025-02-22,L016,Surveillance observation recorded
+E00703,C007,call,2025-03-04,L017,Surveillance observation recorded
+E00704,C007,transaction,2025-03-07,L018,Call activity detected
+E00801,C008,incident,2025-07-06,L017,Observed movement near incident area
+E00802,C008,transaction,2025-07-07,L018,Call activity detected
+E00803,C008,transaction,2025-07-08,L019,Observed movement near incident area
+E00804,C008,incident,2025-07-12,L020,Observed movement near incident area
+E00901,C009,surveillance,2025-09-23,L019,Call activity detected
+E00902,C009,transaction,2025-09-27,L020,Vehicle sighting logged
+E00903,C009,call,2025-10-03,L021,Vehicle sighting logged
+E00904,C009,call,2025-10-08,L022,Call activity detected
+E00905,C009,call,2025-10-17,L023,Vehicle sighting logged
+E01001,C010,meeting,2025-05-12,L021,Witness interview recorded
+E01002,C010,incident,2025-05-15,L022,Related transaction noted
+E01003,C010,vehicle_sighting,2025-05-14,L023,Witness interview recorded
+E01004,C010,incident,2025-05-15,L024,Related transaction noted
+E01101,C011,surveillance,2025-02-19,L023,Vehicle sighting logged
+E01102,C011,incident,2025-02-22,L024,Vehicle sighting logged
+E01103,C011,call,2025-02-27,L025,Related transaction noted
+E01104,C011,meeting,2025-03-03,L026,Surveillance observation recorded
+E01105,C011,vehicle_sighting,2025-03-15,L027,Call activity detected
+E01106,C011,transaction,2025-03-11,L028,Call activity detected
+E01201,C012,meeting,2025-08-24,L025,Vehicle sighting logged
+E01202,C012,transaction,2025-08-27,L026,Vehicle sighting logged
+E01203,C012,meeting,2025-09-03,L027,Call activity detected
+E01204,C012,call,2025-09-02,L028,Call activity detected
+E01205,C012,vehicle_sighting,2025-09-09,L029,Surveillance observation recorded
+E01301,C013,surveillance,2025-02-17,L027,Related transaction noted
+E01302,C013,transaction,2025-02-23,L028,Vehicle sighting logged
+E01303,C013,meeting,2025-02-27,L029,Observed movement near incident area
+E01304,C013,meeting,2025-02-23,L030,Observed movement near incident area
+E01401,C014,transaction,2025-05-13,L029,Surveillance observation recorded
+E01402,C014,surveillance,2025-05-14,L030,Call activity detected
+E01403,C014,transaction,2025-05-25,L001,Related transaction noted
+E01404,C014,vehicle_sighting,2025-05-19,L002,Surveillance observation recorded
+E01405,C014,meeting,2025-05-25,L003,Observed movement near incident area
+E01501,C015,vehicle_sighting,2025-07-19,L001,Vehicle sighting logged
+E01502,C015,meeting,2025-07-22,L002,Vehicle sighting logged
+E01503,C015,transaction,2025-07-23,L003,Witness interview recorded
+E01504,C015,call,2025-07-28,L004,Witness interview recorded
+E01601,C016,call,2025-12-22,L003,Call activity detected
+E01602,C016,incident,2025-12-25,L004,Surveillance observation recorded
+E01603,C016,meeting,2025-12-30,L005,Vehicle sighting logged
+E01604,C016,incident,2025-12-31,L006,Call activity detected
+E01701,C017,surveillance,2025-10-21,L005,Related transaction noted
+E01702,C017,incident,2025-10-22,L006,Surveillance observation recorded
+E01703,C017,meeting,2025-10-29,L007,Surveillance observation recorded
+E01704,C017,call,2025-11-08,L008,Vehicle sighting logged
+E01801,C018,incident,2025-07-14,L007,Surveillance observation recorded
+E01802,C018,incident,2025-07-15,L008,Surveillance observation recorded
+E01803,C018,surveillance,2025-07-18,L009,Related transaction noted
+E01804,C018,call,2025-07-17,L010,Vehicle sighting logged
+E01805,C018,incident,2025-08-07,L011,Observed movement near incident area
+E01806,C018,incident,2025-07-29,L012,Surveillance observation recorded
+E01901,C019,call,2025-06-15,L009,Related transaction noted
+E01902,C019,meeting,2025-06-17,L010,Surveillance observation recorded
+E01903,C019,meeting,2025-06-21,L011,Vehicle sighting logged
+E01904,C019,meeting,2025-06-30,L012,Call activity detected
+E02001,C020,vehicle_sighting,2025-08-09,L011,Related transaction noted
+E02002,C020,transaction,2025-08-12,L012,Surveillance observation recorded
+E02003,C020,vehicle_sighting,2025-08-19,L013,Vehicle sighting logged
+E02004,C020,incident,2025-08-18,L014,Observed movement near incident area
+E02005,C020,vehicle_sighting,2025-08-17,L015,Vehicle sighting logged
+E02006,C020,meeting,2025-08-19,L016,Call activity detected
+E02101,C021,vehicle_sighting,2025-12-13,L013,Observed movement near incident area
+E02102,C021,incident,2025-12-19,L014,Surveillance observation recorded
+E02103,C021,incident,2025-12-25,L015,Witness interview recorded
+E02104,C021,surveillance,2025-12-31,L016,Call activity detected
+E02201,C022,call,2025-04-25,L015,Related transaction noted
+E02202,C022,transaction,2025-04-30,L016,Vehicle sighting logged
+E02203,C022,vehicle_sighting,2025-05-07,L017,Surveillance observation recorded
+E02204,C022,vehicle_sighting,2025-05-07,L018,Surveillance observation recorded
+E02205,C022,vehicle_sighting,2025-05-11,L019,Call activity detected
+E02206,C022,call,2025-05-25,L020,Surveillance observation recorded
+E02301,C023,vehicle_sighting,2025-01-14,L017,Vehicle sighting logged
+E02302,C023,transaction,2025-01-20,L018,Surveillance observation recorded
+E02303,C023,meeting,2025-01-24,L019,Related transaction noted
+E02304,C023,incident,2025-02-01,L020,Related transaction noted
+E02401,C024,call,2025-09-13,L019,Call activity detected
+E02402,C024,call,2025-09-16,L020,Call activity detected
+E02403,C024,incident,2025-09-17,L021,Call activity detected
+E02404,C024,vehicle_sighting,2025-09-16,L022,Call activity detected
+E02405,C024,surveillance,2025-10-03,L023,Vehicle sighting logged
+E02406,C024,transaction,2025-10-13,L024,Related transaction noted
+E02501,C025,vehicle_sighting,2025-11-17,L021,Call activity detected
+E02502,C025,transaction,2025-11-23,L022,Call activity detected
+E02503,C025,surveillance,2025-11-23,L023,Vehicle sighting logged
+E02504,C025,surveillance,2025-11-23,L024,Witness interview recorded
+E02505,C025,meeting,2025-11-29,L025,Vehicle sighting logged
+E02506,C025,incident,2025-12-12,L026,Related transaction noted
+E02601,C026,meeting,2025-04-23,L023,Related transaction noted
+E02602,C026,call,2025-04-27,L024,Surveillance observation recorded
+E02603,C026,surveillance,2025-05-03,L025,Vehicle sighting logged
+E02604,C026,surveillance,2025-04-29,L026,Surveillance observation recorded
+E02605,C026,vehicle_sighting,2025-05-13,L027,Observed movement near incident area
+E02701,C027,meeting,2025-10-13,L025,Related transaction noted
+E02702,C027,surveillance,2025-10-16,L026,Observed movement near incident area
+E02703,C027,call,2025-10-15,L027,Related transaction noted
+E02704,C027,meeting,2025-10-22,L028,Call activity detected
+E02801,C028,transaction,2025-05-08,L027,Vehicle sighting logged
+E02802,C028,call,2025-05-11,L028,Call activity detected
+E02803,C028,call,2025-05-14,L029,Observed movement near incident area
+E02804,C028,transaction,2025-05-17,L030,Related transaction noted
+E02805,C028,meeting,2025-05-16,L001,Observed movement near incident area
+E02901,C029,meeting,2025-04-04,L029,Related transaction noted
+E02902,C029,surveillance,2025-04-05,L030,Call activity detected
+E02903,C029,surveillance,2025-04-12,L001,Vehicle sighting logged
+E02904,C029,call,2025-04-19,L002,Surveillance observation recorded
+E02905,C029,incident,2025-04-20,L003,Vehicle sighting logged
+E03001,C030,surveillance,2025-08-09,L001,Witness interview recorded
+E03002,C030,call,2025-08-10,L002,Surveillance observation recorded
+E03003,C030,transaction,2025-08-15,L003,Surveillance observation recorded
+E03004,C030,meeting,2025-08-24,L004,Surveillance observation recorded

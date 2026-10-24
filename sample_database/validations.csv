@@ -1,0 +1,121 @@
+validation_id,relationship_id,reviewer_role,action,comment,validated_at
+VAL0001,R0001,analyst,approved,Needs additional field verification.,2026-01-15
+VAL0002,R0002,senior_investigator,needs_review,Relationship supported by multiple records.,2026-01-15
+VAL0003,R0003,analyst,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0004,R0004,investigator,rejected,Needs additional field verification.,2026-01-15
+VAL0005,R0005,analyst,needs_review,Evidence source opened and relation retained.,2026-01-15
+VAL0006,R0006,analyst,approved,Relationship supported by multiple records.,2026-01-15
+VAL0007,R0007,senior_investigator,approved,Needs additional field verification.,2026-01-15
+VAL0008,R0008,investigator,approved,Relationship supported by multiple records.,2026-01-15
+VAL0009,R0009,analyst,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0010,R0010,investigator,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0011,R0011,senior_investigator,needs_review,Evidence source opened and relation retained.,2026-01-15
+VAL0012,R0012,senior_investigator,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0013,R0013,analyst,needs_review,Needs additional field verification.,2026-01-15
+VAL0014,R0014,investigator,needs_review,Relationship supported by multiple records.,2026-01-15
+VAL0015,R0015,senior_investigator,needs_review,Relationship supported by multiple records.,2026-01-15
+VAL0016,R0016,senior_investigator,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0017,R0017,analyst,rejected,Needs additional field verification.,2026-01-15
+VAL0018,R0018,investigator,needs_review,Needs additional field verification.,2026-01-15
+VAL0019,R0019,analyst,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0020,R0020,senior_investigator,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0021,R0021,analyst,rejected,Relationship supported by multiple records.,2026-01-15
+VAL0022,R0022,analyst,approved,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0023,R0023,investigator,rejected,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0024,R0024,senior_investigator,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0025,R0025,senior_investigator,rejected,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0026,R0026,investigator,approved,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0027,R0027,analyst,needs_review,Needs additional field verification.,2026-01-15
+VAL0028,R0028,investigator,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0029,R0029,investigator,approved,Needs additional field verification.,2026-01-15
+VAL0030,R0030,analyst,approved,Relationship supported by multiple records.,2026-01-15
+VAL0031,R0031,senior_investigator,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0032,R0032,analyst,approved,Relationship supported by multiple records.,2026-01-15
+VAL0033,R0033,investigator,rejected,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0034,R0034,senior_investigator,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0035,R0035,analyst,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0036,R0036,investigator,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0037,R0037,senior_investigator,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0038,R0038,analyst,rejected,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0039,R0039,senior_investigator,approved,Relationship supported by multiple records.,2026-01-15
+VAL0040,R0040,investigator,rejected,Relationship supported by multiple records.,2026-01-15
+VAL0041,R0041,analyst,rejected,Needs additional field verification.,2026-01-15
+VAL0042,R0042,analyst,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0043,R0043,investigator,approved,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0044,R0044,analyst,approved,Relationship supported by multiple records.,2026-01-15
+VAL0045,R0045,investigator,needs_review,Evidence source opened and relation retained.,2026-01-15
+VAL0046,R0046,senior_investigator,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0047,R0047,analyst,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0048,R0048,investigator,approved,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0049,R0049,analyst,needs_review,Needs additional field verification.,2026-01-15
+VAL0050,R0050,analyst,rejected,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0051,R0051,analyst,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0052,R0052,investigator,needs_review,Needs additional field verification.,2026-01-15
+VAL0053,R0053,analyst,approved,Relationship supported by multiple records.,2026-01-15
+VAL0054,R0054,senior_investigator,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0055,R0055,investigator,rejected,Relationship supported by multiple records.,2026-01-15
+VAL0056,R0056,analyst,rejected,Relationship supported by multiple records.,2026-01-15
+VAL0057,R0057,analyst,rejected,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0058,R0058,investigator,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0059,R0059,investigator,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0060,R0060,analyst,approved,Needs additional field verification.,2026-01-15
+VAL0061,R0061,analyst,rejected,Needs additional field verification.,2026-01-15
+VAL0062,R0062,investigator,approved,Needs additional field verification.,2026-01-15
+VAL0063,R0063,senior_investigator,approved,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0064,R0064,analyst,rejected,Relationship supported by multiple records.,2026-01-15
+VAL0065,R0065,analyst,approved,Needs additional field verification.,2026-01-15
+VAL0066,R0066,senior_investigator,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0067,R0067,senior_investigator,needs_review,Evidence source opened and relation retained.,2026-01-15
+VAL0068,R0068,senior_investigator,approved,Relationship supported by multiple records.,2026-01-15
+VAL0069,R0069,senior_investigator,rejected,Relationship supported by multiple records.,2026-01-15
+VAL0070,R0070,analyst,approved,Relationship supported by multiple records.,2026-01-15
+VAL0071,R0071,senior_investigator,approved,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0072,R0072,analyst,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0073,R0073,analyst,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0074,R0074,senior_investigator,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0075,R0075,senior_investigator,needs_review,Needs additional field verification.,2026-01-15
+VAL0076,R0076,investigator,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0077,R0077,senior_investigator,rejected,Needs additional field verification.,2026-01-15
+VAL0078,R0078,analyst,rejected,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0079,R0079,analyst,needs_review,Needs additional field verification.,2026-01-15
+VAL0080,R0080,analyst,needs_review,Needs additional field verification.,2026-01-15
+VAL0081,R0081,analyst,approved,Relationship supported by multiple records.,2026-01-15
+VAL0082,R0082,analyst,rejected,Relationship supported by multiple records.,2026-01-15
+VAL0083,R0083,senior_investigator,needs_review,Needs additional field verification.,2026-01-15
+VAL0084,R0084,analyst,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0085,R0085,analyst,needs_review,Evidence source opened and relation retained.,2026-01-15
+VAL0086,R0086,investigator,needs_review,Evidence source opened and relation retained.,2026-01-15
+VAL0087,R0087,analyst,approved,Relationship supported by multiple records.,2026-01-15
+VAL0088,R0088,investigator,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0089,R0089,investigator,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0090,R0090,investigator,approved,Needs additional field verification.,2026-01-15
+VAL0091,R0091,analyst,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0092,R0092,senior_investigator,approved,Relationship supported by multiple records.,2026-01-15
+VAL0093,R0093,investigator,needs_review,Relationship supported by multiple records.,2026-01-15
+VAL0094,R0094,senior_investigator,needs_review,Needs additional field verification.,2026-01-15
+VAL0095,R0095,analyst,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0096,R0096,senior_investigator,approved,Evidence source opened and relation retained.,2026-01-15
+VAL0097,R0097,senior_investigator,rejected,Needs additional field verification.,2026-01-15
+VAL0098,R0098,investigator,rejected,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0099,R0099,analyst,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0100,R0100,senior_investigator,rejected,Needs additional field verification.,2026-01-15
+VAL0101,R0101,investigator,needs_review,Needs additional field verification.,2026-01-15
+VAL0102,R0102,analyst,rejected,Evidence source opened and relation retained.,2026-01-15
+VAL0103,R0103,analyst,needs_review,Relationship supported by multiple records.,2026-01-15
+VAL0104,R0104,analyst,rejected,Relationship supported by multiple records.,2026-01-15
+VAL0105,R0105,investigator,approved,Needs additional field verification.,2026-01-15
+VAL0106,R0106,analyst,rejected,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0107,R0107,analyst,approved,Needs additional field verification.,2026-01-15
+VAL0108,R0108,investigator,needs_review,Relationship supported by multiple records.,2026-01-15
+VAL0109,R0109,analyst,needs_review,Relationship supported by multiple records.,2026-01-15
+VAL0110,R0110,analyst,rejected,Needs additional field verification.,2026-01-15
+VAL0111,R0111,investigator,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0112,R0112,senior_investigator,needs_review,Relationship supported by multiple records.,2026-01-15
+VAL0113,R0113,senior_investigator,approved,Needs additional field verification.,2026-01-15
+VAL0114,R0114,senior_investigator,approved,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0115,R0115,analyst,needs_review,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0116,R0116,analyst,approved,Insufficient corroboration; keep as lead.,2026-01-15
+VAL0117,R0117,analyst,needs_review,Relationship supported by multiple records.,2026-01-15
+VAL0118,R0118,senior_investigator,needs_review,Evidence source opened and relation retained.,2026-01-15
+VAL0119,R0119,investigator,rejected,Needs additional field verification.,2026-01-15
+VAL0120,R0120,analyst,approved,Relationship supported by multiple records.,2026-01-15

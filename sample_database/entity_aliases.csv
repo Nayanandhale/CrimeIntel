@@ -1,0 +1,8 @@
+alias_id,canonical_id,observed_value,alias_type,confidence
+EA001,P005,Bunty Patil,person_name_variant,high
+EA002,P005,Bunty P.,person_name_variant,medium
+EA003,P018,Raju Shinde,person_name_variant,high
+EA004,P018,Raju S.,person_name_variant,medium
+EA005,V003,MH12 AB 4821,vehicle_format_variant,high
+EA006,V003,MH-12-AB-4821,vehicle_format_variant,high
+EA007,PH007,+91 98XXXXXX12,phone_masked_variant,medium

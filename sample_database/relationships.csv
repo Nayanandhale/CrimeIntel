@@ -1,0 +1,155 @@
+relationship_id,source_type,source_id,target_type,target_id,relationship_type,confidence,evidence_status,source_document_id,explanation,first_seen,last_seen
+R0001,person,P001,person,P002,KNOWS,0.74,verified,DOC003,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0002,person,P002,person,P003,KNOWS,0.74,verified,DOC005,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0003,person,P003,person,P004,KNOWS,0.82,verified,DOC007,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0004,person,P004,person,P005,KNOWS,0.86,verified,DOC009,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0005,person,P005,person,P006,KNOWS,0.87,verified,DOC011,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0006,person,P006,person,P007,KNOWS,0.74,verified,DOC013,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0007,person,P007,person,P008,KNOWS,0.94,verified,DOC015,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0008,person,P008,person,P009,KNOWS,0.76,verified,DOC017,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0009,person,P010,person,P011,KNOWS,0.89,verified,DOC019,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0010,person,P011,person,P012,KNOWS,0.93,verified,DOC021,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0011,person,P012,person,P013,KNOWS,0.79,verified,DOC023,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0012,person,P013,person,P014,KNOWS,0.73,verified,DOC025,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0013,person,P014,person,P015,KNOWS,0.85,verified,DOC027,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0014,person,P015,person,P016,KNOWS,0.83,verified,DOC029,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0015,person,P016,person,P017,KNOWS,0.8,verified,DOC031,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0016,person,P017,person,P018,KNOWS,0.95,verified,DOC033,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0017,person,P019,person,P020,KNOWS,0.77,verified,DOC035,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0018,person,P020,person,P021,KNOWS,0.86,verified,DOC037,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0019,person,P021,person,P022,KNOWS,0.88,verified,DOC039,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0020,person,P022,person,P023,KNOWS,0.88,verified,DOC041,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0021,person,P023,person,P024,KNOWS,0.74,verified,DOC043,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0022,person,P024,person,P025,KNOWS,0.9,verified,DOC045,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0023,person,P025,person,P026,KNOWS,0.92,verified,DOC047,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0024,person,P026,person,P027,KNOWS,0.89,verified,DOC049,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0025,person,P028,person,P029,KNOWS,0.83,verified,DOC051,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0026,person,P029,person,P030,KNOWS,0.94,verified,DOC053,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0027,person,P030,person,P031,KNOWS,0.91,verified,DOC055,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0028,person,P031,person,P032,KNOWS,0.89,verified,DOC057,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0029,person,P032,person,P033,KNOWS,0.75,verified,DOC059,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0030,person,P033,person,P034,KNOWS,0.87,verified,DOC061,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0031,person,P034,person,P035,KNOWS,0.8,verified,DOC063,Both persons appear in linked witness/communication records.,2025-02-01,2025-10-15
+R0032,person,P009,person,P010,ASSOCIATED_WITH,0.78,ai_suggested,DOC007,Potential bridge identified from overlapping case participation and contextual evidence; requires investigator validation.,2025-04-10,2025-11-22
+R0033,person,P018,person,P019,ASSOCIATED_WITH,0.72,ai_suggested,DOC010,Potential bridge identified from overlapping case participation and contextual evidence; requires investigator validation.,2025-04-10,2025-11-22
+R0034,person,P027,person,P028,ASSOCIATED_WITH,0.78,ai_suggested,DOC013,Potential bridge identified from overlapping case participation and contextual evidence; requires investigator validation.,2025-04-10,2025-11-22
+R0035,person,P035,person,P036,ASSOCIATED_WITH,0.72,ai_suggested,DOC016,Potential bridge identified from overlapping case participation and contextual evidence; requires investigator validation.,2025-04-10,2025-11-22
+R0036,person,P005,person,P018,ASSOCIATED_WITH,0.76,ai_suggested,DOC019,Potential bridge identified from overlapping case participation and contextual evidence; requires investigator validation.,2025-04-10,2025-11-22
+R0037,person,P018,person,P027,ASSOCIATED_WITH,0.75,ai_suggested,DOC022,Potential bridge identified from overlapping case participation and contextual evidence; requires investigator validation.,2025-04-10,2025-11-22
+R0038,person,P027,person,P035,ASSOCIATED_WITH,0.87,ai_suggested,DOC025,Potential bridge identified from overlapping case participation and contextual evidence; requires investigator validation.,2025-04-10,2025-11-22
+R0039,person,P001,phone,PH001,CALLS,0.96,verified,DOC079,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0040,person,P001,phone,PH002,CALLS,0.82,pending,DOC081,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0041,person,P002,phone,PH003,CALLS,0.76,pending,DOC083,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0042,person,P003,phone,PH005,CALLS,0.87,verified,DOC085,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0043,person,P004,phone,PH007,CALLS,0.99,verified,DOC087,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0044,person,P005,phone,PH009,CALLS,0.97,verified,DOC089,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0045,person,P005,phone,PH010,CALLS,0.84,pending,DOC001,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0046,person,P006,phone,PH011,CALLS,0.93,verified,DOC003,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0047,person,P007,phone,PH013,CALLS,0.77,pending,DOC005,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0048,person,P008,phone,PH015,CALLS,0.83,pending,DOC007,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0049,person,P009,phone,PH017,CALLS,0.79,pending,DOC009,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0050,person,P009,phone,PH018,CALLS,0.96,verified,DOC011,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0051,person,P010,phone,PH019,CALLS,0.87,verified,DOC013,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0052,person,P011,phone,PH021,CALLS,0.73,pending,DOC015,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0053,person,P012,phone,PH023,CALLS,0.84,pending,DOC017,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0054,person,P013,phone,PH025,CALLS,0.9,verified,DOC019,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0055,person,P013,phone,PH026,CALLS,0.88,verified,DOC021,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0056,person,P014,phone,PH027,CALLS,0.75,pending,DOC023,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0057,person,P015,phone,PH029,CALLS,0.8,pending,DOC025,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0058,person,P016,phone,PH031,CALLS,0.78,pending,DOC027,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0059,person,P017,phone,PH033,CALLS,0.74,pending,DOC029,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0060,person,P017,phone,PH034,CALLS,0.78,pending,DOC031,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0061,person,P018,phone,PH035,CALLS,0.76,pending,DOC033,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0062,person,P019,phone,PH037,CALLS,0.89,verified,DOC035,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0063,person,P020,phone,PH039,CALLS,0.88,verified,DOC037,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0064,person,P021,phone,PH001,CALLS,0.81,pending,DOC039,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0065,person,P021,phone,PH002,CALLS,0.76,pending,DOC041,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0066,person,P022,phone,PH003,CALLS,0.96,verified,DOC043,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0067,person,P023,phone,PH005,CALLS,0.98,verified,DOC045,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0068,person,P024,phone,PH007,CALLS,0.91,verified,DOC047,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0069,person,P025,phone,PH009,CALLS,0.75,pending,DOC049,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0070,person,P025,phone,PH010,CALLS,0.95,verified,DOC051,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0071,person,P026,phone,PH011,CALLS,0.76,pending,DOC053,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0072,person,P027,phone,PH013,CALLS,0.95,verified,DOC055,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0073,person,P028,phone,PH015,CALLS,0.79,pending,DOC057,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0074,person,P029,phone,PH017,CALLS,0.79,pending,DOC059,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0075,person,P029,phone,PH018,CALLS,0.81,pending,DOC061,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0076,person,P030,phone,PH019,CALLS,0.9,verified,DOC063,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0077,person,P031,phone,PH021,CALLS,0.74,pending,DOC065,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0078,person,P032,phone,PH023,CALLS,0.73,pending,DOC067,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0079,person,P033,phone,PH025,CALLS,0.8,pending,DOC069,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0080,person,P033,phone,PH026,CALLS,0.97,verified,DOC071,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0081,person,P034,phone,PH027,CALLS,0.83,pending,DOC073,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0082,person,P035,phone,PH029,CALLS,0.87,verified,DOC075,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0083,person,P036,phone,PH031,CALLS,0.76,pending,DOC077,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0084,person,P037,phone,PH033,CALLS,0.88,verified,DOC079,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0085,person,P037,phone,PH034,CALLS,0.98,verified,DOC081,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0086,person,P038,phone,PH035,CALLS,0.97,verified,DOC083,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0087,person,P039,phone,PH037,CALLS,0.83,pending,DOC085,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0088,person,P040,phone,PH039,CALLS,0.93,verified,DOC087,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0089,person,P041,phone,PH001,CALLS,0.78,pending,DOC089,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0090,person,P041,phone,PH002,CALLS,0.89,verified,DOC001,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0091,person,P042,phone,PH003,CALLS,0.77,pending,DOC003,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0092,person,P043,phone,PH005,CALLS,0.86,verified,DOC005,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0093,person,P044,phone,PH007,CALLS,0.91,verified,DOC007,Phone association extracted from synthetic CDR summary.,2025-01-01,2025-12-01
+R0094,person,P001,vehicle,V001,USES_VEHICLE,0.92,verified,DOC009,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0095,person,P003,vehicle,V007,USES_VEHICLE,0.89,verified,DOC011,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0096,person,P005,vehicle,V013,USES_VEHICLE,0.96,verified,DOC013,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0097,person,P007,vehicle,V019,USES_VEHICLE,0.9,verified,DOC015,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0098,person,P009,vehicle,V025,USES_VEHICLE,0.83,pending,DOC017,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0099,person,P011,vehicle,V001,USES_VEHICLE,0.85,pending,DOC019,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0100,person,P013,vehicle,V007,USES_VEHICLE,0.88,verified,DOC021,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0101,person,P015,vehicle,V013,USES_VEHICLE,0.81,pending,DOC023,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0102,person,P017,vehicle,V019,USES_VEHICLE,0.93,verified,DOC025,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0103,person,P019,vehicle,V025,USES_VEHICLE,0.95,verified,DOC027,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0104,person,P021,vehicle,V001,USES_VEHICLE,0.95,verified,DOC029,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0105,person,P023,vehicle,V007,USES_VEHICLE,0.75,pending,DOC031,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0106,person,P025,vehicle,V013,USES_VEHICLE,0.92,verified,DOC033,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0107,person,P027,vehicle,V019,USES_VEHICLE,0.89,verified,DOC035,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0108,person,P029,vehicle,V025,USES_VEHICLE,0.88,verified,DOC037,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0109,person,P031,vehicle,V001,USES_VEHICLE,0.83,pending,DOC039,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0110,person,P033,vehicle,V007,USES_VEHICLE,0.8,pending,DOC041,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0111,person,P035,vehicle,V013,USES_VEHICLE,0.95,verified,DOC043,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0112,person,P037,vehicle,V019,USES_VEHICLE,0.82,pending,DOC045,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0113,person,P039,vehicle,V025,USES_VEHICLE,0.89,verified,DOC047,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0114,person,P041,vehicle,V001,USES_VEHICLE,0.79,pending,DOC049,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0115,person,P043,vehicle,V007,USES_VEHICLE,0.86,verified,DOC051,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0116,person,P045,vehicle,V013,USES_VEHICLE,0.96,verified,DOC053,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0117,person,P047,vehicle,V019,USES_VEHICLE,0.93,verified,DOC055,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0118,person,P049,vehicle,V025,USES_VEHICLE,0.85,pending,DOC057,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0119,person,P005,vehicle,V003,USES_VEHICLE,0.93,verified,DOC059,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0120,person,P018,vehicle,V003,USES_VEHICLE,0.79,pending,DOC061,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0121,person,P027,vehicle,V012,USES_VEHICLE,0.91,verified,DOC063,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0122,person,P035,vehicle,V012,USES_VEHICLE,0.83,pending,DOC065,Vehicle association from registration/observation records.,2025-01-01,2025-12-01
+R0123,person,P001,organization,O001,WORKS_AT,0.92,verified,DOC067,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0124,person,P004,organization,O007,WORKS_AT,0.88,verified,DOC069,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0125,person,P007,organization,O003,WORKS_AT,0.74,pending,DOC071,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0126,person,P010,organization,O009,WORKS_AT,0.85,verified,DOC073,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0127,person,P013,organization,O005,WORKS_AT,0.72,pending,DOC075,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0128,person,P016,organization,O001,WORKS_AT,0.94,verified,DOC077,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0129,person,P019,organization,O007,WORKS_AT,0.71,pending,DOC079,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0130,person,P022,organization,O003,WORKS_AT,0.69,pending,DOC081,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0131,person,P025,organization,O009,WORKS_AT,0.89,verified,DOC083,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0132,person,P028,organization,O005,WORKS_AT,0.72,pending,DOC085,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0133,person,P031,organization,O001,WORKS_AT,0.87,verified,DOC087,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0134,person,P034,organization,O007,WORKS_AT,0.9,verified,DOC089,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0135,person,P037,organization,O003,WORKS_AT,0.93,verified,DOC001,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0136,person,P040,organization,O009,WORKS_AT,0.69,pending,DOC003,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0137,person,P043,organization,O005,WORKS_AT,0.86,verified,DOC005,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0138,person,P046,organization,O001,WORKS_AT,0.75,pending,DOC007,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0139,person,P049,organization,O007,WORKS_AT,0.89,verified,DOC009,Organization association in synthetic case records.,2025-01-01,2025-12-01
+R0140,case,C003,case,C004,SAME_LOCATION_PATTERN,0.82,ai_suggested,DOC010,"Candidate cross-case relationship generated from temporal, spatial or modus-operandi similarity.",2025-09-11,2025-03-16
+R0141,case,C006,case,C007,SAME_LOCATION_PATTERN,0.75,ai_suggested,DOC019,"Candidate cross-case relationship generated from temporal, spatial or modus-operandi similarity.",2025-06-02,2025-02-20
+R0142,case,C009,case,C010,SAME_LOCATION_PATTERN,0.7,ai_suggested,DOC028,"Candidate cross-case relationship generated from temporal, spatial or modus-operandi similarity.",2025-09-23,2025-05-12
+R0143,case,C012,case,C013,SAME_LOCATION_PATTERN,0.84,ai_suggested,DOC037,"Candidate cross-case relationship generated from temporal, spatial or modus-operandi similarity.",2025-08-24,2025-02-17
+R0144,case,C015,case,C016,SAME_LOCATION_PATTERN,0.73,ai_suggested,DOC046,"Candidate cross-case relationship generated from temporal, spatial or modus-operandi similarity.",2025-07-19,2025-12-22
+R0145,case,C016,case,C017,SAME_MO_AS,0.77,ai_suggested,DOC049,"Candidate cross-case relationship generated from temporal, spatial or modus-operandi similarity.",2025-12-22,2025-10-21
+R0146,case,C018,case,C019,SAME_LOCATION_PATTERN,0.73,ai_suggested,DOC055,"Candidate cross-case relationship generated from temporal, spatial or modus-operandi similarity.",2025-07-14,2025-06-15
+R0147,case,C021,case,C022,SAME_LOCATION_PATTERN,0.63,ai_suggested,DOC064,"Candidate cross-case relationship generated from temporal, spatial or modus-operandi similarity.",2025-12-13,2025-04-25
+R0148,case,C024,case,C025,SAME_LOCATION_PATTERN,0.75,ai_suggested,DOC073,"Candidate cross-case relationship generated from temporal, spatial or modus-operandi similarity.",2025-09-13,2025-11-17
+R0149,case,C027,case,C028,SAME_LOCATION_PATTERN,0.8,ai_suggested,DOC082,"Candidate cross-case relationship generated from temporal, spatial or modus-operandi similarity.",2025-10-13,2025-05-08
+R0150,case,C001,case,C013,SEMANTIC_CASE_SIMILARITY,0.87,ai_suggested,DOC002,Similar night-entry method and CCTV disabling within a 90-day window. Suggested for investigator review; not proof of common offender.,2025-03-01,2025-12-01
+R0151,case,C005,case,C021,SEMANTIC_CASE_SIMILARITY,0.88,ai_suggested,DOC006,Similar jewellery-access pattern and nearby market corridors. Suggested for investigator review; not proof of common offender.,2025-03-01,2025-12-01
+R0152,case,C007,case,C022,SEMANTIC_CASE_SIMILARITY,0.88,ai_suggested,DOC008,Industrial equipment theft pattern with similar timing. Suggested for investigator review; not proof of common offender.,2025-03-01,2025-12-01
+R0153,case,C012,case,C029,SEMANTIC_CASE_SIMILARITY,0.8,ai_suggested,DOC013,Repeated shutter bypass pattern across nearby commercial zones. Suggested for investigator review; not proof of common offender.,2025-03-01,2025-12-01
+R0154,case,C016,case,C030,SEMANTIC_CASE_SIMILARITY,0.9,ai_suggested,DOC017,Similar fire/arson preparation sequence; no explicit shared entity. Suggested for investigator review; not proof of common offender.,2025-03-01,2025-12-01
