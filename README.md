@@ -33,27 +33,45 @@ Instead of manually examining disconnected documents and records, investigators 
 | 📝 **Draft Report Assistance** | Helps prepare structured investigation drafts using available case records and source references. |
 | 🔐 **Role-Based Access** | Restricts access to cases and actions according to user permissions. |
 
-                            CrimeIntel Platform
-                                     │
-           ┌─────────────────────────┴─────────────────────────┐
-           ▼                                                   ▼
-┌─────────────────────────────┐             ┌─────────────────────────────┐
-│    ADMINISTRATOR VIEW       │             │     INVESTIGATOR VIEW       │
-│  (District HQ Oversight)    │             │   (Field Division Scope)    │
-├─────────────────────────────┤             ├─────────────────────────────┤
-│ • Executive Dashboard       │             │ • Investigator Dashboard    │
-│   (KPIs, Trends, Aging)     │             │   (Rich KPI cards, Bars)    │
-│ • Crime Records & Cases     │             │ • Crime Records & My Cases  │
-│   (Search, Filter, Inspect) │             │   (Assigned case management)│
-│ • Location Crime Map        │             │ • Location Incident Map     │
-│   (District pins, Heat map) │             │   (Priority pins, Clusters) │
-│ • Officer Workload & Stats  │             │ • Network Graph Constellation│
-│   (Caseload, Active tasks)  │             │   (VisNetwork, Communities) │
-│ • AI Investigation Assist   │             │ • Forensic Case Comparison  │
-│   (Evidence-grounded RAG)   │             │   (Multi-factor radar chart)│
-│ • Review Queue              │             │ • Chronological Timeline    │
-│   (Audit trail & approvals) │             │ • Register FIR & Evidence   │
-└─────────────────────────────┘             └─────────────────────────────┘
+## 🏛️ Platform Architecture
+```mermaid
+flowchart TD
+    A["CrimeIntel Platform"] --> B["Administrator View"]
+    A --> C["Investigator View"]
+
+    B --> D["Executive Dashboard"]
+    B --> E["Crime Records & Analytics"]
+    B --> F["Location-Based Crime Map"]
+    B --> G["Officer Workload & Statistics"]
+
+    C --> H["Investigator Dashboard"]
+    C --> I["My Cases & Crime Records"]
+    C --> J["Register FIR & Add Evidence"]
+    C --> K["Network Graph & Entity Analysis"]
+    C --> L["Forensic Case Comparison"]
+    C --> M["Review Queue & Timeline"]
+    C --> N["AI Investigation Assistant"]
+
+    D --> O["District-Level KPIs, Trends & Case Aging"]
+    E --> P["Case Search, Filters & Inspection"]
+    F --> Q["Incident Locations, Clusters & Heatmap"]
+    G --> R["Caseload & Active Tasks"]
+
+    K --> S["Relationships, Communities & Centrality"]
+    L --> T["MO, Temporal, Spatial & Semantic Comparison"]
+    M --> U["Evidence Validation & Audit Trail"]
+    N --> V["Evidence-Grounded Answers & Draft Reports"]
+
+    classDef root fill:#153746,color:#ffffff,stroke:#153746
+    classDef admin fill:#e6f8fa,color:#153746,stroke:#0ea5b7
+    classDef investigator fill:#eef4f7,color:#153746,stroke:#628796
+    classDef detail fill:#ffffff,color:#18323d,stroke:#d8e4e8
+
+    class A root
+    class B,D,E,F,G admin
+    class C,H,I,J,K,L,M,N investigator
+    class O,P,Q,R,S,T,U,V detail
+```
 
 ### ⚙️ How It Works
 
